@@ -80,21 +80,58 @@
 
       <!-- modal -->
       <!-- Button trigger modal -->
-           
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content"> 
                   <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title  fw-bolder" id="staticBackdropLabel">Form Product <br>
+                    <span style="color: red; font-size:12px">*  <span  class="text-capitalize ">kolom input wajib diisi.</span></span>
+                  </h5> <br>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                  <form action="" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                      <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie">
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_category" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
+                     <select name="id_category" id="id_category" class="form-control">
+                      <option value="" selected>--Select option category--</option>
+                      <option value="makanan">Makanan</option>
+                      <option value="minuman">Minuman</option>  
+                      <option value="Alat_tulis">Alat tulis</option>
+                     </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="stok" class="form-label">Stock <span style="color: red; font-size:20px">*</span></label>
+                      <input type="number" class="form-control" id="stok" aria-describedby="stok" placeholder="0">
+                    </div>
+                    <div class="mb-3">
+                      <label for="satuan" class="form-label">Satuan <span style="color: red; font-size:20px">*</span></label>
+                     <select name="satuan" id="satuan" class="form-control">
+                      <option value="" selected>--Select option satuan--</option>
+                      <option value="Pcs">Pcs</option>
+                      <option value="Pack">Pack</option>
+                      <option value="gram">Gram (g)</option>
+                      <option value="kilo_gram">Kilo gram (kg)</option>
+                      <option value="liter">Liter (L)</option>
+                      <option value="lusin">Lusin</option>
+                      <option value="Box">Box</option>
+                      <option value="rim">Rim</option>
+                     </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="harga" aria-describedby="harga" placeholder="Contoh : 10000">
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="far fa-window-close fa-sm" style="color: #ffffff;"></i></button>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">send</button>
+                  </form>
                   </div>
                 </div>
               </div>
