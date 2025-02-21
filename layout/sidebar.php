@@ -1,21 +1,18 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand">
+        <div class="sidebar-brand " style="padding-top: 30px; padding-bottom: 30px;">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
-            <!--begin::Brand Image-->
-            <img
-              src="template/dist/assets/img/desktop-solid.svg"
-              alt="Pos Logo"
-              class="brand-image opacity-75 shadow"
-            />
-            <!--end::Brand Image-->
-            <!--begin::Brand Text-->
-            <br>
-            <!--end::Brand Text-->
-            <span class="brand-text fw-light">POS System</span>
-          </a>
+          <a href="#">
+                <img
+                  src="template/dist/assets/img/users-solid.svg"
+                  width="60"
+                  alt="User Image"
+                />
+              
+              </a>
+            
           <!--end::Brand Link-->
+      
         </div>
         <!--end::Sidebar Brand-->
         <!--begin::Sidebar Wrapper-->
@@ -39,7 +36,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item <?php if($module=="sales"){
+              <li class="nav-item <?php if($module=="salesCashier" || $module=="salesRiwayatHistory"){
                 echo "menu-open";
               }
               ?>" >
@@ -52,13 +49,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a <?php if($module=="salesCashier" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=salesCashier&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cashier</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a <?php if($module=="salesRiwayatHistory" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=salesRiwayatHistory&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Transaction History</p>
                     </a>
@@ -79,7 +80,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item ">
-                    <a <?php if($module=="product" && $action == "main"){
+                    <a <?php if($module=="product" && $action == "list"){
                   echo "class='nav-link active'";
                 }?>  href='<?php echo BASE_URL . "index.php?&module=product&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
@@ -87,19 +88,25 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href='<?php echo BASE_URL . "index.php?&module=productCategory&action=list"; ?>' class="nav-link ">
+                    <a <?php if($module=="productCategory" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productCategory&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Category </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href='<?php echo BASE_URL . "index.php?&module=productStock&action=list"; ?>' class="nav-link ">
+                  <a <?php if($module=="productStock" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productStock&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Stock </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a href='<?php echo BASE_URL . "index.php?&module=productDiscount&action=list"; ?>' class="nav-link ">
+                  <a <?php if($module=="productDiscount" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productDiscount&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Discount</p>
                     </a>
@@ -107,7 +114,7 @@
                   
                 </ul>
               </li>
-              <li class="nav-item <?php if($module=="salesReport" && $module=="productReport"){
+              <li class="nav-item <?php if($module=="salesReport" || $module=="productReport"){
                 echo "menu-open";
               }
               ?>" >
@@ -120,20 +127,27 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a <?php if($module=="salesReport" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=salesReport&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Sales Report</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a <?php if($module=="productReport" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productReport&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Report </p>
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item <?php if($module=="users" || $module=="cashierManagement"){
+                echo "menu-open";
+              }
+              ?>" >
                 <a href="#" class="nav-link ">
                 <i class="fas fa-cogs" style="color: #ffffff;"></i>
                   <p>
@@ -143,11 +157,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a <?php if($module=="users" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=users&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users Role</p>
-                    </a>
-                    <a href="./index.html" class="nav-link">
+                    </a>  
+                    <a <?php if($module=="cashierManagemen" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagemen&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cashier Management</p>
                     </a>
