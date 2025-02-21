@@ -28,8 +28,10 @@
               role="menu"
               data-accordion="false"
             > 
-              <li class="nav-item ">
-                <a href='<?php echo BASE_URL . "index.php?&module=dashboard&action=main"; ?>' class="nav-link">
+              <li class="nav-item " >
+                <a <?php if($module=="dashboard" && $action == "main"){
+                  echo "class='nav-link active'";
+                }?> href='<?php echo BASE_URL . "index.php?&module=dashboard&action=main"; ?>' class="nav-link" >
                 <i class="fas fa-tachometer-alt" style="color: #ffffff;"></i>
                   <p>
                     Dashboard
@@ -37,7 +39,10 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item <?php if($module=="sales"){
+                echo "menu-open";
+              }
+              ?>" >
                 <a href="#" class="nav-link ">
                 <i class="fas fa-cart-plus" style="color: #ffffff;"></i>
                   <p>
@@ -61,7 +66,10 @@
                   
                 </ul>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productDiscount"){
+                echo "menu-open";
+              }
+              ?>" >
                 <a href="#" class="nav-link ">
                 <i class="fas fa-boxes" style="color: #ffffff;"></i>
                   <p>
@@ -70,26 +78,28 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
-                  <li class="nav-item active">
-                    <a href='<?php echo BASE_URL . "index.php?&module=product&action=list"; ?>' class="nav-link ">
+                  <li class="nav-item ">
+                    <a <?php if($module=="product" && $action == "main"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=product&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product List</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                    <a href='<?php echo BASE_URL . "index.php?&module=productCategory&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Category </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a href='<?php echo BASE_URL . "index.php?&module=productStock&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Stock </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link ">
+                  <a href='<?php echo BASE_URL . "index.php?&module=productDiscount&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Discount</p>
                     </a>
@@ -97,7 +107,10 @@
                   
                 </ul>
               </li>
-              <li class="nav-item ">
+              <li class="nav-item <?php if($module=="salesReport" && $module=="productReport"){
+                echo "menu-open";
+              }
+              ?>" >
                 <a href="#" class="nav-link ">
                 <i class="fas fa-print" style="color: #ffffff;"></i>
                   <p>
