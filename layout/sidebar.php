@@ -1,15 +1,9 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
-        <div class="sidebar-brand " style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="sidebar-brand ">
           <!--begin::Brand Link-->
-          <a href="#">
-                <img
-                  src="template/dist/assets/img/users-solid.svg"
-                  width="60"
-                  alt="User Image"
-                />
-              
-              </a>
+         <span style="color: #ffffff; font-size: 26px; text-align:center; font-weight:600 ;">[ POS ]
+        </span><br><br><br>
             
           <!--end::Brand Link-->
       

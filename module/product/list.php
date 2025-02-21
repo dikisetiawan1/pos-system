@@ -15,11 +15,13 @@
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               Add Product
             </button>
+            <button href="#" type="button" class="btn btn-danger"><i class="far fa-file-excel" style="color: #ffffff;"></i></i></button>
               <button href="#" type="button" class="btn btn-info"><i class="fas fa-print" style="color: #ffffff;"></i></button>
+              </div>
               </div>
               <div class="col">
                 <div class="card mt-4 p-4">
-                  <!-- start:table -->
+                  <!-- start:table -->  
               <table class="table table-striped table-hover">
                     <thead>
                       <tr>
