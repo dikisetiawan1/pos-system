@@ -1,4 +1,16 @@
   
+
+<?php
+$notif = isset($_GET['notif']) ? $_GET['notif'] : false;
+if ($notif == 'success') {
+    echo "<script>alert('Data berhasil ditambahkan')</script>"; }
+    else {
+        echo "<script>alert('Data gagal ditambahkan')</script>";
+    }
+    ?>
+
+
+
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -32,6 +44,7 @@
                         <th scope="col">Stock</th>
                         <th scope="col">Satuan</th>
                         <th scope="col">Harga</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -48,7 +61,8 @@
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga'])."</td>
-                      </tr>
+                        <td><a  href='' class='btn btn-warning me-2'><i class='fas fa-edit'></i></a>  
+                        <a href='' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
                       ";
                    
                     }
@@ -94,14 +108,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                  <form action="" method="post" enctype="multipart/form-data">
+                  <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                      <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie">
+                      <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001">
                     </div>
                     <div class="mb-3">
-                      <label for="id_category" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
-                     <select name="id_category" id="id_category" class="form-control">
+                      <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie">
+                    </div>
+                    <div class="mb-3">
+                      <label for="id_kategori" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
+                     <select name="id_kategori" id="id_kategori" class="form-control">
                       <option value="" selected>--Select option category--</option>
                       <option value="makanan">Makanan</option>
                       <option value="minuman">Minuman</option>  
@@ -111,7 +129,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="stok" class="form-label">Stock <span style="color: red; font-size:20px">*</span></label>
-                      <input type="number" class="form-control" id="stok" aria-describedby="stok" placeholder="0">
+                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0">
                     </div>
                     <div class="mb-3">
                       <label for="satuan" class="form-label">Satuan <span style="color: red; font-size:20px">*</span></label>
@@ -130,11 +148,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga" aria-describedby="harga" placeholder="Contoh : 10000">
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000">
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="far fa-window-close fa-sm" style="color: #ffffff;"></i></button>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
+                    <button type="submit" class="btn btn-warning"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
                   </form>
                   </div>
