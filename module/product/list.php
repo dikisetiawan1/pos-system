@@ -1,8 +1,10 @@
 <?php
+// Path: module/product/list.php
+// ambil data dari URL yang dikirim
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
   $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
   $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;     
-
+// ambil data dari URL yang dikirim
   $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
   ?>
@@ -29,7 +31,7 @@
               </div>
               </div>
               <div class="col mt-2">
-
+<!-- tampilkan alert notifikasi yg diambil dri url -->
               <?php
               if($notif == 'success'){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -44,9 +46,11 @@
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> Data berhasil dihapus.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+              }elseif($notif == 'failed'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Failed!</strong> Data gagal disimpan, ID Produk harus beda.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
               }
-
-
               ?>
                 <div class="card mt-4 p-4">
                   <!-- start:table -->  
@@ -64,7 +68,6 @@
                     </thead>
                     <tbody>
                 <?php
-
                 $query = "SELECT * FROM products";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
@@ -92,8 +95,6 @@
                   </table>
                   
                   <!-- end:table -->
-
-                  
                   <!-- start:pagination -->
                   <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end mt-2 ">
@@ -117,7 +118,6 @@
         </div>
         <!--end::App Content-->
       </main>
-
 
       <!-- modal -->
       <!-- Button trigger modal -->

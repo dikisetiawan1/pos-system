@@ -1,4 +1,5 @@
 <?php
+// Path: module/product/form.php
     $id_produk =isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
 
     $nama_produk ="";
