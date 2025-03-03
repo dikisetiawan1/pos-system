@@ -1,16 +1,7 @@
-  
-
 <?php
-$notif = isset($_GET['notif']) ? $_GET['notif'] : false;
-if ($notif == 'success') {
-    echo "<script>alert('Data berhasil ditambahkan')</script>"; }
-    else {
-        echo "<script>alert('Data gagal ditambahkan')</script>";
-    }
-    ?>
-
-
-
+  $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
+  ?>
+  
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -32,13 +23,26 @@ if ($notif == 'success') {
               <button href="#" type="button" class="btn btn-info"><i class="fas fa-print" style="color: #ffffff;"></i></button>
               </div>
               </div>
-              <div class="col">
+              <div class="col mt-4">
+
+              <?php
+              if($notif == 'success'){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Data berhasil disimpan.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>'; 
+              }elseif($notif == 'failed'){
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Failed!</strong> Data gagal disimpan.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+              }
+              ?>
                 <div class="card mt-4 p-4">
                   <!-- start:table -->  
               <table class="table table-striped table-hover">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
@@ -151,8 +155,8 @@ if ($notif == 'success') {
                       <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000">
                     </div>
                     <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
-                    <button type="submit" class="btn btn-warning"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
                   </form>
                   </div>
