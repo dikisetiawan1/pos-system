@@ -1,8 +1,12 @@
 <?php
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
-  $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;          
+  $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
+  $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;     
+
+  $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
+  mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
   ?>
-  
+
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -36,7 +40,13 @@
                 echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> Data berhasil diubah.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+              }elseif($notifdelete == 'success'){
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Data berhasil dihapus.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
               }
+
+
               ?>
                 <div class="card mt-4 p-4">
                   <!-- start:table -->  
@@ -69,7 +79,7 @@
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga'])."</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
-                        <a href='' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
+                        <a href='" . BASE_URL . "index.php?&module=product&action=list&id_produk=$item[id_produk]&notifdelete=success' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
                       ";
                     };
                    }else{
@@ -174,3 +184,5 @@
               </div>
             </div>
                   <!-- end:modal -->
+
+                
