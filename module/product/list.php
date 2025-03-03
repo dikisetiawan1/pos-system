@@ -58,7 +58,7 @@
                     <thead>
                       <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Product Name</th>
+                        <th scope="col">Product</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Satuan</th>
