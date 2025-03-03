@@ -1,5 +1,6 @@
 <?php
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
+  $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;          
   ?>
   
    <!--begin::App Main-->
@@ -14,7 +15,7 @@
               <!--end::Col-->
             </div>
             <!--end::Row-->
-            <div class="row mt-5">
+            <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus" style="color: #ffffff;"></i> Product
@@ -23,7 +24,7 @@
               <button href="#" type="button" class="btn btn-info"><i class="fas fa-print" style="color: #ffffff;"></i></button>
               </div>
               </div>
-              <div class="col mt-4">
+              <div class="col mt-2">
 
               <?php
               if($notif == 'success'){
@@ -31,9 +32,9 @@
                 <strong>Success!</strong> Data berhasil disimpan.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>'; 
-              }elseif($notif == 'failed'){
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Failed!</strong> Data gagal disimpan.
+              }elseif($notifupdate == 'success'){
+                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Data berhasil diubah.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
               }
               ?>
@@ -47,14 +48,16 @@
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Satuan</th>
-                        <th scope="col">Harga</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                 <?php
+
                 $query = "SELECT * FROM products";
                 $result = mysqli_query($koneksi, $query);
+                if($result->num_rows > 0){
                     
                 while ($item = mysqli_fetch_assoc($result)) {
                   echo "
@@ -65,15 +68,22 @@
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga'])."</td>
-                        <td><a  href='' class='btn btn-warning me-2'><i class='fas fa-edit'></i></a>  
+                        <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
                         <a href='' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
                       ";
-                   
-                    }
-                     ?>
+                    };
+                   }else{
+                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Data belum ada!</strong> Silahkan inputkan data terlebih dahulu.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+                   } ?>
                     </tbody>
                   </table>
+                  
                   <!-- end:table -->
+
+                  
                   <!-- start:pagination -->
                   <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end mt-2 ">
@@ -115,15 +125,15 @@
                   <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                       <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001">
+                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" required>
                     </div>
                     <div class="mb-3">
                       <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie">
+                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" required>
                     </div>
                     <div class="mb-3">
                       <label for="id_kategori" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
-                     <select name="id_kategori" id="id_kategori" class="form-control">
+                     <select name="id_kategori" id="id_kategori" class="form-control" required>
                       <option value="" selected>--Select option category--</option>
                       <option value="makanan">Makanan</option>
                       <option value="minuman">Minuman</option>  
@@ -133,11 +143,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="stok" class="form-label">Stock <span style="color: red; font-size:20px">*</span></label>
-                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0">
+                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0" required>
                     </div>
                     <div class="mb-3">
                       <label for="satuan" class="form-label">Satuan <span style="color: red; font-size:20px">*</span></label>
-                     <select name="satuan" id="satuan" class="form-control">
+                     <select name="satuan" id="satuan" class="form-control" required>
                       <option value="" selected>--Select option satuan--</option>
                       <option value="Pcs">Pcs</option>
                       <option value="Pack">Pack</option>
@@ -152,10 +162,10 @@
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000">
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" required>
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
+                    <button type="submit" name="button" value="send" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
                   </div>
                   </form>

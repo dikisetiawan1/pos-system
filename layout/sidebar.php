@@ -3,7 +3,7 @@
         <div class="sidebar-brand ">
           <!--begin::Brand Link-->
          <span style="color: #ffffff; font-size: 26px; text-align:center; font-weight:600 ;">[ POS ]
-        </span><br><br><br>
+        </span>
             
           <!--end::Brand Link-->
       
