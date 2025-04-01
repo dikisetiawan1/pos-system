@@ -23,9 +23,11 @@
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="<?php echo BASE_URL . "module/product/export.php"; ?>" class="btn btn-primary">Export</a>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus" style="color: #ffffff;"></i> Product
             </button>
+            
               </div>
               </div>
               <div class="col mt-2">
@@ -50,7 +52,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
               }
               ?>
-                <div class="card mt-4 p-4">
+                <div class="card mt-3 p-4">
                   <!-- start:table -->  
               <table id="example" class="table table-striped">
                     <thead>
