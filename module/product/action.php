@@ -12,9 +12,6 @@ $satuan = $_POST['satuan'];
 $harga = $_POST['harga'];
 $button = $_POST['button'];
 
-
-
-
 // jika id produk belum ada dan button yang di klik adalah send
 if ($button == "send") {
     //cek apakah id produk sudah ada atau belum

@@ -26,8 +26,6 @@
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus" style="color: #ffffff;"></i> Product
             </button>
-            <button href="#" type="button" class="btn btn-danger"><i class="far fa-file-excel" style="color: #ffffff;"></i></i></button>
-              <button href="#" type="button" class="btn btn-info"><i class="fas fa-print" style="color: #ffffff;"></i></button>
               </div>
               </div>
               <div class="col mt-2">
@@ -54,7 +52,7 @@
               ?>
                 <div class="card mt-4 p-4">
                   <!-- start:table -->  
-              <table class="table table-striped table-hover">
+              <table id="example" class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">ID</th>
@@ -69,18 +67,9 @@
                     <tbody>
                 <?php
 
-        
+             
 
-                // konfigurasi pagination
-              $query1 = "SELECT * FROM products";
-              $result1 = mysqli_query($koneksi, $query1);
-              $jmlDataPerHalaman=5;
-              $jmlData = $result1->num_rows;
-              $jmlHalaman = ceil($jmlData/$jmlDataPerHalaman);
-              $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
-              $awalData= ($jmlDataPerHalaman * $halamanAktif) - $jmlDataPerHalaman;
-
-              $query = "SELECT * FROM products LIMIT $awalData, $jmlDataPerHalaman";
+              $query = "SELECT * FROM products";
               $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     
@@ -105,35 +94,6 @@
                    } ?>
                     </tbody>
                   </table>
-                  
-                  <!-- end:table -->
-
-                  <!-- start:pagination -->
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end mt-2 ">
-
-                      <?php if( $halamanAktif > 1) :?>
-                        <li class="page-item">
-                        <a class="page-link" href="?&module=product&action=list&halaman=<?= $halamanAktif - 1;?>" tabindex="-1">Previous</a>
-                      </li>
-                        <?php endif;?>
-                      <?php for($i=1; $i<=$jmlHalaman; $i++) :?>
-                        <?php if($i == $halamanAktif) :?>
-                      <li class="page-item active"><a class="page-link" href="?&module=product&action=list&halaman=<?= $i;?>"><?= $i;?></a></li>
-                        <?php else :?>
-                      <li class="page-item"><a class="page-link" href="?&module=product&action=list&halaman=<?= $i;?>"><?= $i;?></a></li>
-                      <?php endif; ?>
-                      <?php endfor;?>
-
-                      <?php if( $halamanAktif < $jmlHalaman) :?>
-                      <li class="page-item">
-                        <a class="page-link" href="?&module=product&action=list&halaman=<?= $halamanAktif + 1;?>">Next</a>
-                      </li>
-                        <?php endif;?>
-                     
-                    </ul>
-                  </nav>
-                  <!-- end:pagination -->
                 </div>
               </div>
             </div>
