@@ -3,7 +3,7 @@
 // ambil data dari URL yang dikirim
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
   $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
-  $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;     
+  $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;
 // ambil data dari URL yang dikirim
   $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
@@ -68,8 +68,20 @@
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT * FROM products";
-                $result = mysqli_query($koneksi, $query);
+
+        
+
+                // konfigurasi pagination
+              $query1 = "SELECT * FROM products";
+              $result1 = mysqli_query($koneksi, $query1);
+              $jmlDataPerHalaman=5;
+              $jmlData = $result1->num_rows;
+              $jmlHalaman = ceil($jmlData/$jmlDataPerHalaman);
+              $halamanAktif = (isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+              $awalData= ($jmlDataPerHalaman * $halamanAktif) - $jmlDataPerHalaman;
+
+              $query = "SELECT * FROM products LIMIT $awalData, $jmlDataPerHalaman";
+              $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     
                 while ($item = mysqli_fetch_assoc($result)) {
@@ -95,18 +107,30 @@
                   </table>
                   
                   <!-- end:table -->
+
                   <!-- start:pagination -->
                   <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end mt-2 ">
-                      <li class="page-item">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+
+                      <?php if( $halamanAktif > 1) :?>
+                        <li class="page-item">
+                        <a class="page-link" href="?&module=product&action=list&halaman=<?= $halamanAktif - 1;?>" tabindex="-1">Previous</a>
                       </li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <?php endif;?>
+                      <?php for($i=1; $i<=$jmlHalaman; $i++) :?>
+                        <?php if($i == $halamanAktif) :?>
+                      <li class="page-item active"><a class="page-link" href="?&module=product&action=list&halaman=<?= $i;?>"><?= $i;?></a></li>
+                        <?php else :?>
+                      <li class="page-item"><a class="page-link" href="?&module=product&action=list&halaman=<?= $i;?>"><?= $i;?></a></li>
+                      <?php endif; ?>
+                      <?php endfor;?>
+
+                      <?php if( $halamanAktif < $jmlHalaman) :?>
                       <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" href="?&module=product&action=list&halaman=<?= $halamanAktif + 1;?>">Next</a>
                       </li>
+                        <?php endif;?>
+                     
                     </ul>
                   </nav>
                   <!-- end:pagination -->
