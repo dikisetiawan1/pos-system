@@ -4,7 +4,7 @@
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
   $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
   $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;
-// ambil data dari URL yang dikirim
+  // ambil id yg dikirim untuk proses hapus item
   $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
   ?>
@@ -31,7 +31,8 @@
               </div>
               </div>
               <div class="col mt-2">
-<!-- tampilkan alert notifikasi yg diambil dri url -->
+                <!-- start:notifikasi -->
+            <!-- tampilkan alert notifikasi yg diambil dri url parameter -->
               <?php
               if($notif == 'success'){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -52,12 +53,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
               }
               ?>
+              <!-- end:notifikasi -->
+
                 <div class="card mt-3 p-4">
                   <!-- start:table -->  
               <table id="example" class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
+                        <th scope="col">ID Product</th>
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
@@ -68,16 +72,14 @@
                     </thead>
                     <tbody>
                 <?php
-
-             
-
-              $query = "SELECT * FROM products";
-              $result = mysqli_query($koneksi, $query);
+                $query = "SELECT * FROM products";
+                $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
-                    
+                    $no=1;
                 while ($item = mysqli_fetch_assoc($result)) {
                   echo "
                       <tr>
+                        <td>$no</td>
                         <td>$item[id_produk]</td>
                         <td>$item[nama_produk]</td>
                         <td>$item[id_kategori]</td>
@@ -86,7 +88,8 @@
                         <td> ".rupiah($item['harga'])."</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
                         <a href='" . BASE_URL . "index.php?&module=product&action=list&id_produk=$item[id_produk]&notifdelete=success' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
-                      ";
+                      </tr>";
+                      $no++;
                     };
                    }else{
                     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -96,6 +99,7 @@
                    } ?>
                     </tbody>
                   </table>
+                  <!-- end:table -->
                 </div>
               </div>
             </div>
@@ -105,9 +109,8 @@
         <!--end::App Content-->
       </main>
 
-      <!-- modal -->
-      <!-- Button trigger modal -->
-            <!-- Modal -->
+    
+            <!-- Form Modal input barang -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content"> 

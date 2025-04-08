@@ -2,13 +2,14 @@
 // Path: module/product/form.php
     $id_produk =isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
 
+    // inisialisasi variabel
     $nama_produk ="";
     $id_kategori="";
     $stok="";
     $satuan="";
     $harga="";
 
-
+// jika id yg di kirim melalui url parameter sama yg ada di db, maka tampilkan
     if($id_produk){
         $sql = "SELECT * FROM products WHERE id_produk='$id_produk'";
         $query = mysqli_query($koneksi, $sql);
@@ -39,6 +40,7 @@
             <div class="row justify-content-center">
               <div class="col-4">  
                 <div class="card p-4 align-item-center">
+                  <!-- Star:form edit -->
                 <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                       <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px">*</span></label>
@@ -84,9 +86,9 @@
                     <div class="modal-footer">
                     <a href="<?= BASE_URL . "index.php?module=product&action=list" ?>" class="btn btn-secondary me-2">Back</a>
                     <button type="submit" name="button" value="update" class="btn btn-success">Update</button>
-                
                   </div>
                   </form>
+                  <!-- end:form -->
                   </div>
                 </div>
                 </div>

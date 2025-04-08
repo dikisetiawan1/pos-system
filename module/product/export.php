@@ -5,7 +5,7 @@ include_once '../../function/koneksi.php';
 ?>
 <html>
 <head>
-  <title> Product</title>
+  <title>Data Produk</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,10 +18,10 @@ include_once '../../function/koneksi.php';
 
 <body>
 <div class="container">
-			<h2>Product</h2>
+			<h2>Data Produk</h2>
 			
 				<div class="data-tables datatable-dark">
-                <table id="mauexport" >
+                <table id="export" >
                     <thead>
                       <tr>
                         <th scope="col">ID</th>
@@ -57,7 +57,7 @@ include_once '../../function/koneksi.php';
                 </div>
 <script>
 $(document).ready(function() {
-    $('#mauexport').DataTable( {
+    $('#export').DataTable( {
         dom: 'Bfrtip',
         buttons: [
             'copy','csv','excel', 'pdf', 'print'

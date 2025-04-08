@@ -2,7 +2,7 @@
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2025 &nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">DsCodeSphere</a>.
+          <a href="https://adminlte.io" class="text-decoration-none">dikgital</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->
