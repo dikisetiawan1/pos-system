@@ -101,5 +101,19 @@
       integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY="
       crossorigin="anonymous"
     ></script>
-    
+
+
+  <script>
+  // Fokus saat modal product selesai muncul
+  $('#staticBackdrop').on('shown.bs.modal', function () {
+    $('#id_produk').trigger('focus');
+  });
+</script>
+  <script>
+  // Fokus saat modal product selesai muncul
+  $('#modalCategoryProduct').on('shown.bs.modal', function () {
+    $('#name').trigger('focus');
+  });
+</script>
+
     <!--end::Script-->

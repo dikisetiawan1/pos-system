@@ -16,12 +16,13 @@ $button = $_POST['button'];
 if ($button == "send") {
     //cek apakah id produk sudah ada atau belum
 $cek_id = mysqli_query($koneksi, "SELECT * FROM products WHERE id_produk='$id_produk'");
-if (mysqli_num_rows($cek_id) > 0){
+$cek_produkName = mysqli_query($koneksi, "SELECT * FROM products WHERE nama_produk='$nama_produk' ");
+if (mysqli_num_rows($cek_id) || mysqli_num_rows($cek_produkName) > 0 ) {
     // jika id produk sudah ada
     header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=failed");
 }else{
     mysqli_query($koneksi, "INSERT INTO products (id_produk, nama_produk, id_kategori, stok, satuan, harga) 
-       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga')");
+       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga')   ");
       header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=success");
   
 }}elseif ($button == "update") {

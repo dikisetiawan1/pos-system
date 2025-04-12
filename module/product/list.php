@@ -9,6 +9,8 @@
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
   ?>
 
+
+
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -31,27 +33,35 @@
               </div>
               </div>
               <div class="col mt-2">
-                <!-- start:notifikasi -->
+            <!-- start:notifikasi -->
             <!-- tampilkan alert notifikasi yg diambil dri url parameter -->
               <?php
               if($notif == 'success'){
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Data berhasil disimpan.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>'; 
+                echo '<script>Swal.fire({
+                    title: "Data berhasil ditambahkan!",
+                    text: "You clicked the button!",
+                    icon: "success"
+                  });</script>';  
+             
               }elseif($notifupdate == 'success'){
-                echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Data berhasil diubah.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                echo '<script>Swal.fire({
+                  title: "Data berhasil diubah!",
+                  text: "You clicked the button!",
+                  icon: "success"
+                });</script>'; 
               }elseif($notifdelete == 'success'){
-                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> Data berhasil dihapus.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                echo '<script>Swal.fire({
+                  title: "Data berhasil dihapus!",
+                  text: "You clicked the button!",
+                  icon: "success"
+                });</script>';
+                
               }elseif($notif == 'failed'){
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Failed!</strong> Data gagal disimpan, ID Produk harus beda.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-              }
+                echo '<script>Swal.fire({
+                  title: "Data tidak boleh duplikat!",
+                  text: "You clicked the button!",
+                  icon: "error"
+                });</script>'; }
               ?>
               <!-- end:notifikasi -->
 
@@ -122,8 +132,8 @@
                   </div>
                   <div class="modal-body">
                   <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                      <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px">*</span></label>
+                    <div class="mb-3" >
+                      <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px" >*</span></label>
                       <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" required>
                     </div>
                     <div class="mb-3">
@@ -173,5 +183,6 @@
               </div>
             </div>
                   <!-- end:modal -->
+                
 
                 

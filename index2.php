@@ -78,8 +78,8 @@ function tambahProduk(kode, nama, harga) {
     div.className = "produk-item";
     div.innerHTML = `
         <strong>${kode}</strong> - ${nama} (Rp ${Number(harga).toLocaleString()})<br>
-        Jumlah: <input type="number" name="produk[jumlah][]" value="1" min="1" oninput="hitungTotal()">
-        <input type="hidden" name="produk[kode][]" value="${kode}">
+        Jumlah: <input type="number" name="produk[jumlah][]" value="1" min="1" oninput="hitungTotal()" >
+        <input type="hidden" name="produk[kode][]" value="${kode}" autofocus>
         <input type="hidden" name="produk[nama][]" value="${nama}">
         <input type="hidden" name="produk[harga][]" value="${harga}">
     `;
