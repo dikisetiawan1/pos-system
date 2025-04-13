@@ -48,40 +48,49 @@
                     </div>
                     <div class="mb-3">
                       <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" value='<?= $nama_produk ?>' required autofocus>
+                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" value='<?= $nama_produk ?>' oninput="this.value = this.value.toUpperCase()" required autofocus>
                     </div>
                     <div class="mb-3">
                       <label for="id_kategori" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
                      <select name="id_kategori" id="id_kategori" class="form-control"  required>
-                      <option value="" selected>--Select option category--</option>
-                      <option value="makanan">Makanan</option>
-                      <option value="minuman">Minuman</option>  
-                      <option value="Alat_tulis">Alat tulis</option>
-                      <option value="others">Others</option>
+                      <option value="">--Select option category--</option>
+                      <?php
+                          $query = mysqli_query($koneksi, "SELECT * FROM kategori ");
+                          while ($item =  mysqli_fetch_assoc($query)) {
+                            if ($id_kategori == $item['id_kategori']) {
+                              echo "<option value='$item[id_kategori]' selected >$item[name]</option>";
+                          } else {
+      
+                              echo "<option value='$item[id_kategori]'>$item[name]</option>";
+                          }
+                          } ?>
                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="stok" class="form-label">Stock <span style="color: red; font-size:20px">*</span></label>
-                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0" value='<?= $stok ?>' required>
+                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0" value='<?= $stok ?>'  required>
                     </div>
                     <div class="mb-3">
                       <label for="satuan" class="form-label">Satuan <span style="color: red; font-size:20px">*</span></label>
-                     <select name="satuan" id="satuan" class="form-control"  required>
-                      <option value="" selected>--Select option satuan--</option>
-                      <option value="Pcs">Pcs</option>
-                      <option value="Pack">Pack</option>
-                      <option value="g">Gram (g)</option>
-                      <option value="kg">Kilo gram (kg)</option>
-                      <option value="liter">Liter (L)</option>
-                      <option value="lusin">Lusin</option>
-                      <option value="Box">Box</option>
-                      <option value="rim">Rim</option>
-                      <option value="carton">carton</option>
+                     <select name="satuan" id="satuan" class="form-control" required>
+
+                          <option value='<?= $satuan?>' selected><?= $satuan;?></option>
+                                  <option value='PCS'>PCS</option>
+                                  <option value='PACK'>PACK</option>
+                                  <option value='GRAM'>GRAM</option>
+                                  <option value='KILO GRAM'>KILO GRAM</option>
+                                  <option value='LITER'>LITER</option>
+                                  <option value='LUSIN'>LUSIN</option>
+                                  <option value='BOX'>BOX</option>
+                                  <option value='RIM'>RIM</option>
+                                  <option value='CARTON'>CARTON</option>"
+                                  
+                        
                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" value='<?= $harga ?>' required>
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" value='<?= $harga ?>' oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="modal-footer">
                     <a href="<?= BASE_URL . "index.php?module=product&action=list" ?>" class="btn btn-secondary me-2">Back</a>

@@ -14,6 +14,7 @@
 
         $name = $item['name'];
         $kategori = $item['id_kategori'];
+        $flag = $item['flag'];
     }
 ?>
   
@@ -37,11 +38,15 @@
                 <form action="<?php echo BASE_URL . "module/productCategory/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                       <label for="id_kategori" class="form-label">ID Categories<span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="id_kategori" name="id_kategori" aria-describedby="id_kategori" placeholder="Contoh: PR001" value='<?= $kategori ?>' readonly   >
+                      <input type="text" class="form-control" id="id_kategori" name="id_kategori" aria-describedby="id_kategori" placeholder="Contoh: PR001" value='<?=  $kategori ?>' readonly   >
+                    </div>
+                    <div class="mb-3">
+                      <label for="flag" class="form-label">Flag<span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="flag" name="flag" aria-describedby="flag" placeholder="Contoh: MKN" value='<?=  $flag ?>' oninput="this.value = this.value.toUpperCase()" required autofocus >
                     </div>
                     <div class="mb-3">
                       <label for="name" class="form-label">Product Categories <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="name"  name="name" aria-describedby="name" placeholder="Contoh: Indomie" value='<?= $name ?>' required autofocus>
+                      <input type="text" class="form-control" id="name"  name="name" aria-describedby="name" placeholder="Contoh: Indomie" value='<?= $name ?>' oninput="this.value = this.value.toUpperCase()" required >
                     </div>  
                    
                     <div class="modal-footer">

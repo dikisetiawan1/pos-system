@@ -112,7 +112,7 @@
   <script>
   // Fokus saat modal product selesai muncul
   $('#modalCategoryProduct').on('shown.bs.modal', function () {
-    $('#name').trigger('focus');
+    $('#flag').trigger('focus');
   });
 </script>
 

@@ -6,7 +6,7 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">My Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -30,8 +30,14 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>501</h3>
-                    <p>Product</p>
+                    <h3><?php  $query = "SELECT * FROM products";
+                  $result = mysqli_query($koneksi, $query);
+                  if($result->num_rows == null){
+                    echo 0;
+                  }else{
+                    echo $result->num_rows;
+                  } ?></h3> 
+                    <p>Products</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -58,8 +64,14 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>53</h3>
-                    <p>Product Category</p>
+                  <h3><?php  $query = "SELECT * FROM kategori";
+                  $result = mysqli_query($koneksi, $query);
+                  if($result->num_rows == null){
+                    echo 0;
+                  }else{
+                    echo $result->num_rows;
+                  } ?></h3></h3>
+                    <p>Product Categories</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -93,7 +105,13 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>1488</h3>
+                  <h3><?php  $query = "SELECT * FROM transactions_detail";
+                  $result = mysqli_query($koneksi, $query);
+                  if($result->num_rows == null){
+                    echo 0;
+                  }else{
+                    echo $result->num_rows;
+                  } ?></h3>
                     <p>Transactions</p>
                   </div>
 
@@ -124,7 +142,13 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
+                  <h3><?php  $query = "SELECT * FROM users";
+                  $result = mysqli_query($koneksi, $query);
+                  if($result->num_rows == null){
+                    echo 0;
+                  }else{
+                    echo $result->num_rows;
+                  } ?></h3>
                     <p>User active</p>
                   </div>
                   <svg

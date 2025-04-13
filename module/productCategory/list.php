@@ -86,6 +86,7 @@ if ($data['id_terakhir'] == null) {
                     <thead>
                       <tr>
                         <th scope="col">ID Category</th>
+                        <th scope="col">Flag</th>
                         <th scope="col">Categories</th>
                         <th scope="col">Action</th>
                       </tr>
@@ -101,6 +102,7 @@ if ($data['id_terakhir'] == null) {
                       <tr>
                        
                         <td>$item[id_kategori]</td>
+                        <td>$item[flag]</td>
                         <td>$item[name]</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=productCategory&action=form&id_kategori=$item[id_kategori]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
                         <a href='" . BASE_URL . "index.php?&module=productCategory&action=list&id_kategori=$item[id_kategori]&notifdelete=success' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
@@ -140,11 +142,15 @@ if ($data['id_terakhir'] == null) {
                   <form action="<?php echo BASE_URL . "module/productCategory/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3" >
                       <label for="id_kategori" class="form-label">ID Categories <span style="color: red; font-size:20px" >*</span></label>
-                      <input type="text" class="form-control" id="id_kategori" name="id_kategori" aria-describedby="id_kategori" placeholder="Contoh: PR001" required value="<?= $id_baru ?>" readonly>
+                      <input type="text" class="form-control" id="id_kategori" name="id_kategori" aria-describedby="id_kategori" placeholder="Contoh: PR001" required value="<?=  $id_baru ?>" readonly>
+                    </div>
+                    <div class="mb-3" >
+                      <label for="flag" class="form-label">Flag <span style="color: red; font-size:20px" >*</span></label>
+                      <input type="text" class="form-control" id="flag" name="flag" aria-describedby="flag" placeholder="Contoh: MKN" required oninput="this.value = this.value.toUpperCase()">
                     </div>
                     <div class="mb-3">
                       <label for="name" class="form-label">Product Categories <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="name"  name="name" aria-describedby="name" placeholder="Contoh: Makanan" required>
+                      <input type="text" class="form-control" id="name"  name="name" aria-describedby="name" placeholder="Contoh: Makanan" required oninput="this.value = this.value.toUpperCase()">
                     </div>
                    
                     <div class="modal-footer">

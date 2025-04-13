@@ -19,7 +19,7 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Product Menu</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Product Input</h3></div>
               <!--end::Col-->
             </div>
             <!--end::Row-->
@@ -82,7 +82,7 @@
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT * FROM products";
+                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
@@ -92,7 +92,7 @@
                         <td>$no</td>
                         <td>$item[id_produk]</td>
                         <td>$item[nama_produk]</td>
-                        <td>$item[id_kategori]</td>
+                        <td>$item[flag_kategori]</td>
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga'])."</td>
@@ -134,48 +134,49 @@
                   <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3" >
                       <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px" >*</span></label>
-                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" required>
+                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
                       <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" required>
+                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
                       <label for="id_kategori" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
-                     <select name="id_kategori" id="id_kategori" class="form-control" required>
+                     <select name="id_kategori" id="id_kategori" class="form-control" oninput="this.value = this.value.toUpperCase()" required>
                       <option value="" selected>--Select option category--</option>
-                      <option value="makanan">Makanan</option>
-                      <option value="minuman">Minuman</option>  
-                      <option value="Alat_tulis">Alat tulis</option>
-                      <option value="others">Others</option>
+                      <?php
+                          $query = mysqli_query($koneksi, "SELECT * FROM kategori ");
+                          while ($item =  mysqli_fetch_assoc($query)) {
+                                  echo "<option value='$item[id_kategori]' selected='true'>$item[name]</option>";
+                          } ?>
                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="stok" class="form-label">Stock <span style="color: red; font-size:20px">*</span></label>
-                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0" required>
+                      <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0"  required>
                     </div>
                     <div class="mb-3">
                       <label for="satuan" class="form-label">Satuan <span style="color: red; font-size:20px">*</span></label>
                      <select name="satuan" id="satuan" class="form-control" required>
                       <option value="" selected>--Select option satuan--</option>
-                      <option value="Pcs">Pcs</option>
-                      <option value="Pack">Pack</option>
-                      <option value="g">Gram (g)</option>
-                      <option value="kg">Kilo gram (kg)</option>
-                      <option value="liter">Liter (L)</option>
-                      <option value="lusin">Lusin</option>
-                      <option value="Box">Box</option>
-                      <option value="rim">Rim</option>
-                      <option value="carton">carton</option>
+                      <option value="PCS">PCS</option>
+                      <option value="PACK">PACK</option>
+                      <option value="GRAM">GRAM</option>
+                      <option value="KILO GRAM">KILO GRAM</option>
+                      <option value="LITER">LITER</option>
+                      <option value="LUSIN">LUSIN</option>
+                      <option value="BOX">BOX</option>
+                      <option value="RIM">RIM</option>
+                      <option value="CARTON">CARTON</option>
                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" required>
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" name="button" value="send" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
+                      <button type="submit" name="button" value="send" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
                   </form>
                   </div>
