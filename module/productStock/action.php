@@ -8,7 +8,7 @@ $id_produk = $_POST['id_produk'];
 $nama_produk = $_POST['nama_produk'];
 $satuan = $_POST['satuan'];
 $harga = $_POST['harga'];
-$stok = $_POST['stok'] + $_POST['stok_update'];
+$stok = $_POST['stok'] + $_POST['stok_addupdate'];
 $stok_min = $_POST['stok'] - $_POST['stok_minupdate'];
 $button = $_POST['button'];
 

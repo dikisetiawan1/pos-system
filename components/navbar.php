@@ -1,4 +1,37 @@
-<nav class="app-header navbar navbar-expand bg-secondary-subtle" data-bs-theme="light">
+
+<?php
+  // cek jika stock kurang dari 5 tampilkan alert stock menipis
+  $stokquery = mysqli_query($koneksi, "SELECT nama_produk, stok FROM products WHERE stok < 10 ");
+  $notifalert = $stokquery->num_rows;
+  ?>
+<!-- jam digital -->
+  <style>
+     .clock {
+      color: navy;
+      font-size: 24px;
+      font-weight: bold ;
+      padding: 5px 5px;
+      border-radius: 15px;
+    
+    }
+  </style>
+
+<script>
+  // jam digital
+  function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    }
+    // Update clock every second
+    setInterval(updateClock, 1000);
+    updateClock(); // initial call
+</script>
+
+<nav class="app-header navbar navbar-expand bg-secondary-subtle sticky-top" data-bs-theme="light">
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
@@ -8,7 +41,9 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-
+          <li class="nav-item">
+          <div class="clock" id="clock">00:00:00</div>
+          </li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
@@ -18,27 +53,22 @@
             <li class="nav-item dropdown">
               <a class="nav-link" data-bs-toggle="dropdown" href="#">
                 <i class="bi bi-bell-fill"></i>
-                <span class="navbar-badge badge text-bg-warning">15</span>
+                <span class="navbar-badge badge text-bg-danger p-2" ><?= $notifalert;?> -  Alert Stok</span>
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <span class="dropdown-item dropdown-header" style="color: red; font-weight:600"><?= $notifalert;?> - Alert Stok Menipis</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-envelope me-2"></i> 4 new messages
-                  <span class="float-end text-secondary fs-7">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-people-fill me-2"></i> 8 friend requests
-                  <span class="float-end text-secondary fs-7">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-                  <span class="float-end text-secondary fs-7">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
+                <?php
+                while ($item =  mysqli_fetch_assoc($stokquery)) {
+                                  echo "
+                                  <a href='#' class='dropdown-item'>
+                                    <i class='fas fa-exclamation-circle' style='color: #8a3700;'></i> $item[nama_produk] - $item[stok] Stok Tersisa
+                                  </a>
+                                  
+                                  ";
+                          } 
+                          ?>
+            
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->

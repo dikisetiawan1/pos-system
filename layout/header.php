@@ -69,7 +69,8 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
 
-
+<!-- jam digital -->
+ 
     
     
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

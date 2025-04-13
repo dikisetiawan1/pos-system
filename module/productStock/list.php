@@ -7,6 +7,7 @@
   // ambil id yg dikirim untuk proses hapus item
   $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
+
   ?>
 
 
@@ -25,7 +26,6 @@
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="<?php echo BASE_URL . "module/productStock/export.php"; ?>" class="btn btn-primary">Export</a>
             <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productStock">
             <i class="fas fa-plus" style="color: #ffffff;"></i> Product
             </button> -->
@@ -36,29 +36,15 @@
             <!-- start:notifikasi -->
             <!-- tampilkan alert notifikasi yg diambil dri url parameter -->
               <?php
-              if($notif == 'success'){
+             if($notifupdate == 'success'){
                 echo '<script>Swal.fire({
-                    title: "Data berhasil ditambahkan!",
-                    text: "You clicked the button!",
-                    icon: "success"
-                  });</script>';  
-             
-              }elseif($notifupdate == 'success'){
-                echo '<script>Swal.fire({
-                  title: "Data berhasil diubah!",
+                  title: "Stok berhasil di update!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>'; 
-              }elseif($notifdelete == 'success'){
-                echo '<script>Swal.fire({
-                  title: "Data berhasil dihapus!",
-                  text: "You clicked the button!",
-                  icon: "success"
-                });</script>';
-                
               }elseif($notif == 'failed'){
                 echo '<script>Swal.fire({
-                  title: "Data tidak boleh duplikat!",
+                  title: "Stok tidak bisa update!",
                   text: "You clicked the button!",
                   icon: "error"
                 });</script>'; }

@@ -55,8 +55,8 @@
                       <input type="number" class="form-control" id="stok"  name="stok"  aria-describedby="stok" placeholder="0" value='<?= $stok ?>'  readonly>
                     </div>
                     <div class="mb-3">
-                      <label for="stok_update" class="form-label">Update Stock <span style="color: red; font-size:20px">*</span></label>
-                      <input type="number" class="form-control" id="stok_update"  name="stok_update"  aria-describedby="stok_update" placeholder="0" required autofocus>
+                      <label for="stok_addupdate" class="form-label">Update Stock <span style="color: red; font-size:20px">*</span></label>
+                      <input type="number" class="form-control" id="stok_addupdate"  name="stok_addupdate"  aria-describedby="stok_addupdate" placeholder="0" required autofocus>
                     </div>
                    
                    

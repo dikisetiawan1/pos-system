@@ -1,8 +1,8 @@
-<footer class="app-footer">
+<footer class="app-footer sticky-bottom text-center">
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2025 &nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">dikgital</a>.
+          <a href="#" class="text-decoration-none">setiaverse</a>.
         </strong>
         All rights reserved.
         <!--end::Copyright-->
@@ -15,8 +15,11 @@
 
    <script>new DataTable('#example', {
     scrollX: true,
+    
    
-});</script>
+});
+
+</script>
     <script
       src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
       integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
@@ -110,7 +113,7 @@
   });
 </script>
   <script>
-  // Fokus saat modal product selesai muncul
+  // Fokus saat modal kategori selesai muncul
   $('#modalCategoryProduct').on('shown.bs.modal', function () {
     $('#flag').trigger('focus');
   });
