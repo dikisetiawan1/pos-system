@@ -154,8 +154,8 @@ if ($data['id_terakhir'] == null) {
                     </div>
                    
                     <div class="modal-footer">
-                    <button type="submit" name="button" value="send" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
+                      <button type="submit" name="button" value="send" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
                   </form>
                   </div>

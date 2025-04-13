@@ -65,13 +65,13 @@
               ?>
               <!-- end:notifikasi -->
 
-                <div class="card mt-3 p-4">
+                <div class="card  mt-3 p-4">
                   <!-- start:table -->  
               <table id="example" class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">ID Product</th>
+                        <th scope="col">Product Code</th>
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
