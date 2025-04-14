@@ -5,7 +5,7 @@ include_once '../../function/koneksi.php';
 ?>
 <html>
 <head>
-  <title>Data Produk</title>
+  <title>Data Produk Categories</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -25,6 +25,7 @@ include_once '../../function/koneksi.php';
                     <thead>
                       <tr>
                         <th scope="col">ID</th>
+                        <th scope="col">Flag</th>
                         <th scope="col">Category</th>
                   
                 
@@ -40,6 +41,7 @@ include_once '../../function/koneksi.php';
                   echo "
                       <tr>
                         <td>$item[id_kategori]</td>
+                        <td>$item[flag]</td>
                         <td>$item[name]</td>
                         
                     ";}

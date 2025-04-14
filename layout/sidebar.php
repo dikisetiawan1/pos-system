@@ -2,7 +2,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand ">
           <!--begin::Brand Link-->
-         <span style="color: #ffffff; font-size: 26px; text-align:center; font-weight:600 ;">[ POS ]
+         <span style="color: #ffffff; font-size: 26px; text-align:center; font-weight:600 ;">POS BUMDES
         </span>
             
           <!--end::Brand Link-->

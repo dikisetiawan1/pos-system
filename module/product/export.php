@@ -36,7 +36,7 @@ include_once '../../function/koneksi.php';
                     <tbody>
                 <?php
 
-              $query = "SELECT * FROM products";
+              $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
               $result = mysqli_query($koneksi, $query);
                     
                 while ($item = mysqli_fetch_assoc($result)) {
@@ -44,7 +44,7 @@ include_once '../../function/koneksi.php';
                       <tr>
                         <td>$item[id_produk]</td>
                         <td>$item[nama_produk]</td>
-                        <td>$item[id_kategori]</td>
+                        <td>$item[flag_kategori]</td>
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga'])."</td>";
