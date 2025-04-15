@@ -62,6 +62,8 @@ function handleEnter(event) {
     }
 }
 
+let produkCount = 0;
+
 function tambahProduk(kode, nama, harga) {
     const list = document.getElementById("produkList");
     const hiddenInputs = document.getElementById("produkHiddenInputs");
@@ -74,18 +76,22 @@ function tambahProduk(kode, nama, harga) {
         }
     }
 
+    produkCount++; // tambah nomor urut
     const div = document.createElement("div");
     div.className = "produk-item";
+    div.setAttribute("data-kode", kode); // untuk referensi saat hapus
     div.innerHTML = `
+        <strong>${produkCount}.</strong> 
         <strong>${kode}</strong> - ${nama} (Rp ${Number(harga).toLocaleString()})<br>
         Jumlah: <input type="number" name="produk[jumlah][]" value="1" min="1" oninput="hitungTotal()" >
-        <input type="hidden" name="produk[kode][]" value="${kode}" autofocus>
+        <input type="hidden" name="produk[kode][]" value="${kode}">
         <input type="hidden" name="produk[nama][]" value="${nama}">
         <input type="hidden" name="produk[harga][]" value="${harga}">
+        <button type="button" onclick="hapusProduk('${kode}')">Hapus</button>
     `;
     list.appendChild(div);
 
-    hitungTotal(); // langsung hitung ulang total
+    hitungTotal(); // update total
 }
 
 // input total
@@ -127,6 +133,32 @@ function hitungKembalian() {
         alertDiv.innerText = "";
     }
 }
+
+function hapusProduk(kode) {
+    const list = document.getElementById("produkList");
+    const items = document.querySelectorAll('.produk-item');
+    
+    items.forEach(item => {
+        if (item.getAttribute('data-kode') === kode) {
+            list.removeChild(item);
+        }
+    });
+
+    // reset nomor urut setelah hapus
+    resetNomorUrut();
+    hitungTotal();
+}
+
+function resetNomorUrut() {
+    const items = document.querySelectorAll('.produk-item');
+    produkCount = 0;
+    items.forEach(item => {
+        produkCount++;
+        const strong = item.querySelector('strong');
+        if (strong) strong.innerText = `${produkCount}.`;
+    });
+}
+
 
 </script>
 
