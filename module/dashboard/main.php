@@ -51,7 +51,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="<?php echo BASE_URL . "index.php?&module=product&action=list"; ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     detail <i class="bi bi-link-45deg"></i>
@@ -92,7 +92,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="<?php echo BASE_URL . "index.php?&module=productCategory&action=list"; ?>"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     detail <i class="bi bi-link-45deg"></i>
@@ -129,7 +129,7 @@
                   
                  
                   <a
-                    href="#"
+                    href="<?php echo BASE_URL . "index.php?&module=salesRiwayatHistory&action=list"; ?>"
                     class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     detail <i class="bi bi-link-45deg"></i>
