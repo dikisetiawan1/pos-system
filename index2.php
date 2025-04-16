@@ -16,24 +16,20 @@
 <label>Masukkan Kode Produk:</label><br>
 <input type="text" id="inputKode" onkeypress="handleEnter(event)" autocomplete="off">
 <div id="statusKode"></div>
-
-<div class="produk-list" id="produkList">
-    <div class="produk-header">Produk Ditambahkan:</div>
-</div>
-<h3>Total: <span id="totalHarga">Rp 0</span></h3>
-
-<!-- form input bayar dan kembalian -->
-<label>Bayar:
-    <input type="number" id="bayar" min="0" placeholder="Masukkan jumlah bayar" oninput="hitungKembalian()">
-</label>
-<br>
-<h3>Kembalian: <span id="kembalian">Rp 0</span></h3>
-<div id="bayarAlert" style="color:red;"></div>
-
-
 <form method="POST" action="proses.php" id="formTransaksi">
+    <div class="produk-list" id="produkList">
+        <div class="produk-header">Produk Ditambahkan:</div>
+    </div>
+
     <div id="produkHiddenInputs"></div>
     <br>
+
+    <label>Bayar:
+        <input type="number" name="bayar" id="bayar" min="0" placeholder="Masukkan jumlah bayar" oninput="hitungKembalian()">
+    </label>
+    <br>
+    <h3>Kembalian: <span id="kembalian">Rp 0</span></h3>
+    <div id="bayarAlert" style="color:red;"></div>
 
     <button type="submit">Proses Transaksi</button>
 </form>
