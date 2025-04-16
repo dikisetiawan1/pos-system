@@ -1,14 +1,22 @@
 <?php
 // Path: module/product/list.php
 // ambil data dari URL yang dikirim
-  $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
-  $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
-  $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;
+  $notiftransaksi = isset($_GET['notiftransaksi']) ? $_GET['notiftransaksi'] : false;          
   // ambil id yg dikirim untuk proses hapus item
   $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
   mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
 
+
+  if($notiftransaksi == 'success'){
+    echo '<script>Swal.fire({
+        title: "Transaksi berhasil di cetak & simpan!",
+        text: "You clicked the button!",
+        icon: "success"
+      });</script>';  
+ 
+  }
   ?>
+
 
    <!--begin::App Main-->
    <main class="app-main">
@@ -24,50 +32,50 @@
             <div class="row mt-5">
           <div class="col-8 ">
                          
-    
+            <!-- modal body transaksi -->
           <div class="modal-body ">
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-8">
                     <div class="mb-3" >
                       <label for="inputKode" class="form-label">Input Code Product<span style="color: red; font-size:20px" >*</span></label>
                       <input type="text" class="form-control" id="inputKode" name="inputKode" aria-describedby="id_produk" placeholder="Ex: 89958********"onkeypress="handleEnter(event)" autocomplete="off" required autofocus >
                       <div id="statusKode"></div>
+                      <!-- form transaksi -->
+                      <form method="POST" action="<?php echo BASE_URL . "module/salesCashier/proses.php"; ?>" id="formTransaksi">
+                      <div class="produk-list" id="produkList">
+                        <div class="form-label fw-bold pb-4 pt-4">List Cart Product :</div>
+                         </div>
+                         <div id="produkHiddenInputs"></div>
+                        <br>
+                        </div>
                     </div>
+
+                        <div class="col-4" style="margin-top: 100px;">
+                        <h3 class="pb-2">Total: <span id="totalHarga" style="color:red">Rp 0</span></h3>
+
+                        <div class="row mt-2 pb-2">
+                        <div class="col-6">
+                        <label class="fw-bold">Potongan Disc % </label> <br>
+                        <input type="number" id="diskon" name="diskon"  class="form-control"  min="0" max="100" value="0" oninput="hitungTotal()">
+                        </div>
                     </div>
-                  </div>
+                        <!-- form input bayar dan kembalian -->
+                        <div class="input-group ">
+                        <span class="input-group-text" >Bayar</span>
+                            <input type="number" class="form-control" id="bayar" name="bayar" min="0" placeholder="Input jumlah bayar" oninput="hitungKembalian()">
+                        </div>
+                        <br>
+                        <h3 class="pt-2">Kembalian: <span id="kembalian" name="kembalian" style="color: green;">Rp 0 </span></h3>
+
+                        <div id="bayarAlert" style="color:red;"></div>
+
+                        <button type="submit" class="btn btn-primary">Proses Transaksi</button>
+                        </form>
+                    </div>
                   </div>
 
-                  <div class="produk-list" id="produkList">
-                <div class="form-label fw-bold pb-4 pt-4">List Cart Product :</div>
-            </div>
           </div>  
 
-              <div class="col-4" style="margin-top: 100px;">
-            <h3 class="pb-2">Total: <span id="totalHarga" style="color:red">Rp 0</span></h3>
-
-            <div class="row mt-2 pb-2">
-            <div class="col-4">
-            <label class="fw-bold">Potongan Disc % </label> <br>
-            <input type="number" id="diskon" name="diskon"  class="form-control"  min="0" max="100" value="0" oninput="hitungTotal()">
-            </div>
-          </div>
-
-            <!-- form input bayar dan kembalian -->
-            <div class="input-group ">
-            <span class="input-group-text" >Bayar</span>
-                <input type="number" class="form-control" id="bayar" min="0" placeholder="Input jumlah bayar" oninput="hitungKembalian()">
-            </div>
-            <br>
-            <h3 class="pt-2">Kembalian: <span id="kembalian" style="color: green;">Rp 0 </span></h3>
-
-            <div id="bayarAlert" style="color:red;"></div>
-
-            <form method="POST" action="proses.php" id="formTransaksi">
-                <div id="produkHiddenInputs"></div>
-                <br>
-
-                <button type="submit" class="btn btn-primary">Proses Transaksi</button>
-            </form>
 
             <script>
             function handleEnter(event) {
