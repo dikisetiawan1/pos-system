@@ -142,7 +142,7 @@
               const diskon = getDiskon(total);
               const totalSetelahDiskon = total - diskon;
 
-              document.getElementById("totalHarga").innerText = "Rp " + totalSetelahDiskon.toLocaleString() +" -;";
+              document.getElementById("totalHarga").innerText = "Rp " + totalSetelahDiskon.toLocaleString() ;
               hitungKembalian();
           }
 
@@ -184,7 +184,7 @@
                   alertDiv.innerText = "Uang bayar kurang dari total belanja!";
               } else {
                   const kembali = bayar - totalSetelahDiskon;
-                  document.getElementById("kembalian").innerText = "Rp " + kembali.toLocaleString() + " -;";
+                  document.getElementById("kembalian").innerText = "Rp " + kembali.toLocaleString();
                   alertDiv.innerText = "";
               }
           }
