@@ -4,12 +4,14 @@ include_once '../../function/helper.php';
 // Koneksi database
 include_once '../../function/koneksi.php';
 
+
+// cek apakah ada produk yang dikirim dari form
 if (!isset($_POST['produk']) || empty($_POST['produk']['kode'])) {
   echo "Tidak ada produk yang dikirim.";
   exit;
 }
 
-
+// ambil data dari form dengan metode post yang dikirim
 $kode_produk = $_POST['produk']['kode'];
 $nama_produk = $_POST['produk']['nama'];
 $harga_produk = $_POST['produk']['harga'];
@@ -25,11 +27,12 @@ for ($i = 0; $i < count($kode_produk); $i++) {
     $total += $subtotal;
 }
 
-// Simpan transaksi
+// kalkulasi total setelah diskon dan kembalian 
 $diskon_nominal = round($total * ($diskon / 100));
 $total_setelah_diskon = $total - $diskon_nominal;
 $kembalian = $total_setelah_diskon - $bayar;
 
+// query insert transaksi
 mysqli_query($koneksi, "INSERT INTO transactions (total, diskon, bayar, kembalian) VALUES ($total_setelah_diskon, $diskon_nominal, $bayar, $kembalian)");
 $transaksi_id = mysqli_insert_id($koneksi);
 
@@ -41,12 +44,21 @@ for ($i = 0; $i < count($kode_produk); $i++) {
     $jumlah = $jumlah_produk[$i];
     $subtotal = $harga * $jumlah;
 
+
+    // query insert detail transaksi
     mysqli_query($koneksi, "INSERT INTO transactions_detail (transaksi_id, kode_produk, nama_produk, harga, jumlah, subtotal)
         VALUES ($transaksi_id, '$kode', '$nama', $harga, $jumlah, $subtotal)");
+
+    // query update stok produk
+    mysqli_query($koneksi, "UPDATE products SET stok = stok - $jumlah WHERE id_produk = '$kode'");
+    // Cek apakah ada error saat update stok  
+    if (mysqli_affected_rows($koneksi) <= 0) {
+        echo "Gagal mengupdate stok produk.";
+        exit;
+    }
 }
 
 // Redirect ke halaman cetak
-// header("Location: cetak.php?id=$transaksi_id");
 header("location:" . BASE_URL . "index.php?&module=salesCashier&action=cetak&id=$transaksi_id");
 exit;
 ?>
