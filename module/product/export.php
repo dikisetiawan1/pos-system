@@ -30,13 +30,14 @@ include_once '../../function/koneksi.php';
                         <th scope="col">Stock</th>
                         <th scope="col">Satuan</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Prod Exp</th>
                 
                       </tr>
                     </thead>
                     <tbody>
                 <?php
 
-              $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
+              $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
               $result = mysqli_query($koneksi, $query);
                     
                 while ($item = mysqli_fetch_assoc($result)) {
@@ -47,7 +48,8 @@ include_once '../../function/koneksi.php';
                         <td>$item[flag_kategori]</td>
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
-                        <td> ".rupiah($item['harga'])."</td>";
+                        <td> ".rupiah($item['harga'])."</td>
+                        <td>$item[product_exp]</td>";
                     };
                     ?>
                     </tbody>

@@ -20,7 +20,7 @@ $printer = new Printer($connector);
 
 // Header
 $printer->setJustification(Printer::JUSTIFY_CENTER);
-$printer->text("TOKOMART BUMDES SEGAR\n");
+$printer->text("TOKMART BUMDES SEGAR\n");
 $printer->text("Jl. Karangsegar Pebayuran Bks\n");
 $printer->text("No WA. 085124564864\n");
 $printer->text("------------------------------\n");
