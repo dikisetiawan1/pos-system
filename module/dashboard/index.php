@@ -132,7 +132,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                  <h3><?php  $query = "SELECT * FROM transactions_detail";
+                  <h3><?php  $query = "SELECT * FROM transactions";
                   $result = mysqli_query($koneksi, $query);
                   if($result->num_rows == null){
                     echo 0;
@@ -200,13 +200,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
-              <!-- row filter bulan -->
+              <!-- row filter bulan dan tahun -->
               <div class="row">
                 <div class="col-4">
                   <!-- form untuk filter bulan -->
-                <form method="GET" class="mb-4"  style="margin-top: 110px;">
+                  <form method="GET" class="mb-4"  style="margin-top: 70px;">
+                  <h3 class="mb-4">Grafik Transactions</h3>
                 <div class="input-group mb-3">
-                <label for="bulan" class="form-label"> Pilih Bulan & Tahun: </label> 
+                <label for="bulan" class="form-label"> Filter Bulan & Tahun :   </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">
                   <option value="">Semua</option>
                   <?php
@@ -229,7 +230,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 }
                 ?>
               </select>
-
+                <!-- end:filter bulan dan tahun -->
                 </div>
                 </form>
                 </div>
@@ -274,6 +275,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </script>
 
             </div>
+            <!-- end:chart grafik transaksi -->
             <!--end::Row-->
           </div>
           <!--end::Container-->
