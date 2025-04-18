@@ -1,14 +1,21 @@
 <?php
 include_once 'function/koneksi.php';
 
+// ambil parameter bulan dan tahun dari URL
+$bulan = isset($_GET['bulan']) ? $_GET['bulan'] : '';
+$tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y'); // default tahun sekarang
+
 $query = "SELECT DATE(tgl) as tanggal, COUNT(*) as jumlah 
           FROM transactions 
-          GROUP BY DATE(tgl) 
-          ORDER BY tanggal ASC";
+          WHERE YEAR(tgl) = '$tahun'";
 
+if (!empty($bulan)) {
+    $query .= " AND MONTH(tgl) = '$bulan'";
+}
+$query .= " GROUP BY DATE(tgl) ORDER BY tanggal ASC";
 $result = mysqli_query($koneksi, $query);
 
-
+// tampung data
 $tanggal = [];
 $jumlah = [];
 
@@ -18,10 +25,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 ?>
 
-   
-   
-   
-   
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -197,9 +200,43 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
+              <!-- row filter bulan -->
+              <div class="row">
+                <div class="col-4">
+                  <!-- form untuk filter bulan -->
+                <form method="GET" class="mb-4"  style="margin-top: 110px;">
+                <div class="input-group mb-3">
+                <label for="bulan" class="form-label"> Pilih Bulan & Tahun: </label> 
+                <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">
+                  <option value="">Semua</option>
+                  <?php
+                  for ($i = 1; $i <= 12; $i++) {
+                    $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';
+                    echo "<option value='$i' $selected>" . date('F', mktime(0, 0, 0, $i, 10)) . "</option>";
+                  }
+                  ?>
+                </select>
 
+                <select name="tahun" class="form-control" id="tahun" onchange="this.form.submit()">
+                  <option value="">Semua</option>
+                <?php
+                $startYear = 2020; // tahun awal
+                $currentYear = date('Y'); // tahun sekarang
+
+                for ($y = $startYear; $y <= $currentYear; $y++) {
+                  $selected = (isset($_GET['tahun']) && $_GET['tahun'] == $y) ? 'selected' : '';
+                  echo "<option value='$y' $selected>$y</option>";
+                }
+                ?>
+              </select>
+
+                </div>
+                </form>
+                </div>
+              </div>
+              
               <!-- chart grafik transaksi -->
-              <canvas id="grafikTransaksi" height="150" style="margin-top: 240px;"></canvas>
+              <canvas id="grafikTransaksi" height="250"></canvas>
                 <script>
                     const ctx = document.getElementById('grafikTransaksi').getContext('2d');
                     const grafikTransaksi = new Chart(ctx, {
