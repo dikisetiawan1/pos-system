@@ -10,6 +10,7 @@ $id_kategori = $_POST['id_kategori'];
 $stok = $_POST['stok'];
 $satuan = $_POST['satuan'];
 $harga = $_POST['harga'];
+$produk_exp = $_POST['product_exp'];
 $button = $_POST['button'];
 
 // jika id produk belum ada dan button yang di klik adalah send
@@ -21,13 +22,13 @@ if (mysqli_num_rows($cek_id) || mysqli_num_rows($cek_produkName) > 0 ) {
     // jika id produk sudah ada
     header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=failed");
 }else{
-    mysqli_query($koneksi, "INSERT INTO products (id_produk, nama_produk, id_kategori, stok, satuan, harga) 
-       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga')   ");
+    mysqli_query($koneksi, "INSERT INTO products (id_produk, nama_produk, id_kategori, stok, satuan, harga, product_exp) 
+       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga','$produk_exp')   ");
       header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=success");
   
 }}elseif ($button == "update") {
     // jika button yang di klik adalah update
-   mysqli_query($koneksi, "UPDATE products SET nama_produk='$nama_produk', id_kategori='$id_kategori', stok='$stok', satuan='$satuan', harga='$harga' WHERE id_produk='$id_produk'");
+   mysqli_query($koneksi, "UPDATE products SET nama_produk='$nama_produk', id_kategori='$id_kategori', stok='$stok', satuan='$satuan', harga='$harga', product_exp='$produk_exp' WHERE id_produk='$id_produk'");
    header("location:" . BASE_URL . "index.php?&module=product&action=list&notifupdate=success");
 }
 

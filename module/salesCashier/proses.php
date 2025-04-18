@@ -21,7 +21,7 @@ $total = 0;
 $diskon = $_POST['diskon'] ?? 0;
 $bayar = $_POST['bayar'] ?? 0;
 
-
+// kalkulasi jml produk dan harga produk
 for ($i = 0; $i < count($kode_produk); $i++) {
     $subtotal = $harga_produk[$i] * $jumlah_produk[$i];
     $total += $subtotal;
@@ -32,11 +32,15 @@ $diskon_nominal = round($total * ($diskon / 100));
 $total_setelah_diskon = $total - $diskon_nominal;
 $kembalian = $total_setelah_diskon - $bayar;
 
+
 // query insert transaksi
 mysqli_query($koneksi, "INSERT INTO transactions (total, diskon, bayar, kembalian) VALUES ($total_setelah_diskon, $diskon_nominal, $bayar, $kembalian)");
 $transaksi_id = mysqli_insert_id($koneksi);
 
-// Simpan detail transaksi
+
+
+
+// Simpan detail transaksi per item ke database
 for ($i = 0; $i < count($kode_produk); $i++) {
     $kode = $kode_produk[$i];
     $nama = $nama_produk[$i];
@@ -49,11 +53,12 @@ for ($i = 0; $i < count($kode_produk); $i++) {
     mysqli_query($koneksi, "INSERT INTO transactions_detail (transaksi_id, kode_produk, nama_produk, harga, jumlah, subtotal)
         VALUES ($transaksi_id, '$kode', '$nama', $harga, $jumlah, $subtotal)");
 
-    // query update stok produk
+
+// update stok produk setelah transaksi berhasil
     mysqli_query($koneksi, "UPDATE products SET stok = stok - $jumlah WHERE id_produk = '$kode'");
     // Cek apakah ada error saat update stok  
     if (mysqli_affected_rows($koneksi) <= 0) {
-        echo "Gagal mengupdate stok produk.";
+        echo "<script>alert('Gagal mengupdate stok produk.');</script>";
         exit;
     }
 }
@@ -61,4 +66,7 @@ for ($i = 0; $i < count($kode_produk); $i++) {
 // Redirect ke halaman cetak
 header("location:" . BASE_URL . "index.php?&module=salesCashier&action=cetak&id=$transaksi_id");
 exit;
+
+
+
 ?>

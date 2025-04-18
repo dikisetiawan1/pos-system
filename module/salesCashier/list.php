@@ -9,12 +9,17 @@
 
   if($notiftransaksi == 'success'){
     echo '<script>Swal.fire({
-        title: "Transaksi berhasil di cetak & simpan!",
-        text: "You clicked the button!",
+        title: "Transaksi berhasil tersimpan!",
+        text: "Struk selesai di cetak!",
         icon: "success"
       });</script>';  
  
-  }
+  }elseif($notiftransaksi == 'failed'){
+    echo '<script>Swal.fire({
+        title: "Transaksi gagal, stok tidak cukup!",
+        text: "Silahkan Cek Alert Stok!",
+        icon: "error"
+      });</script>';}
   ?>
 
 
@@ -26,7 +31,13 @@
           <div class="container-fluid card p-4">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6 " style="color: red;"><h3 class="mb-0">Cashier Transactions</h3></div>
+              <div class="col-sm-6 " ><h3 class="mb-0">Cashier Transaction</h3></div>
+              <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                  <li class="breadcrumb-item"><a href="#">Sales</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Cashier transaction</li>
+                </ol>
+              </div>
               <!--end::Col-->
             </div>
             <div class="row mt-5">
@@ -43,7 +54,7 @@
                       <!-- form transaksi -->
                       <form method="POST" action="<?php echo BASE_URL . "module/salesCashier/proses.php"; ?>" id="formTransaksi">
                       <div class="produk-list" id="produkList">
-                        <div class="form-label fw-bold pb-4 pt-4">List Cart Product :</div>
+                        <div class="form-label fw-bold pb-4 pt-4">My Product Cart :</div>
                          </div>
                          <div id="produkHiddenInputs"></div>
                         <br>
@@ -136,7 +147,7 @@
                 hitungTotal(); // langsung hitung ulang total
             }
 
-            // input total
+            // input total setelah diskon
               function hitungTotal() {
               const total = getTotal();
               const diskon = getDiskon(total);

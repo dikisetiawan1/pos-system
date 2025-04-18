@@ -1,3 +1,27 @@
+<?php
+include_once 'function/koneksi.php';
+
+$query = "SELECT DATE(tgl) as tanggal, COUNT(*) as jumlah 
+          FROM transactions 
+          GROUP BY DATE(tgl) 
+          ORDER BY tanggal ASC";
+
+$result = mysqli_query($koneksi, $query);
+
+
+$tanggal = [];
+$jumlah = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $tanggal[] = $row['tanggal'];
+    $jumlah[] = $row['jumlah'];
+}
+?>
+
+   
+   
+   
+   
    <!--begin::App Main-->
    <main class="app-main">
         <!--begin::App Content Header-->
@@ -173,6 +197,45 @@
                 <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
+
+              <!-- chart grafik transaksi -->
+              <canvas id="grafikTransaksi" height="150" style="margin-top: 240px;"></canvas>
+                <script>
+                    const ctx = document.getElementById('grafikTransaksi').getContext('2d');
+                    const grafikTransaksi = new Chart(ctx, {
+                        type: 'line', // atau 'bar'
+                        data: {
+                            labels: <?= json_encode($tanggal) ?>,
+                            datasets: [{
+                                label: 'Jumlah Transaksi per Hari',
+                                data: <?= json_encode($jumlah) ?>,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                // backgroundColor: 'rgb(192, 75, 75)',
+                                fill: true,
+                                tension: 0.3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Tanggal'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Jumlah Transaksi'
+                                    },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+
             </div>
             <!--end::Row-->
           </div>

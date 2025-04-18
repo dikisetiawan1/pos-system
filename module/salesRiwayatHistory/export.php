@@ -5,7 +5,7 @@ include_once '../../function/koneksi.php';
 ?>
 <html>
 <head>
-  <title>Export Data Produk</title>
+  <title>Export Riwayat Transaksi</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,41 +18,43 @@ include_once '../../function/koneksi.php';
 
 <body>
 <div class="container">
-			<h2 class="text-center">Data Produk</h2>
+			<h2 class="text-center">Riwayat Transaksi</h2>
 			
 				<div class="data-tables datatable-dark">
                 <table id="export" >
-                    <thead>
+                <thead>
                       <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Code</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Satuan</th>
+                        <th scope="col">Date</th>
                         <th scope="col">Price</th>
-                
+                        <th scope="col">Qty</th>
+                        <th scope="col">Subtotal</th>
                       </tr>
                     </thead>
                     <tbody>
                 <?php
-
-              $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
-              $result = mysqli_query($koneksi, $query);
-                    
+                $query = "SELECT transactions_detail.kode_produk,transactions_detail.nama_produk,transactions_detail.harga,transactions_detail.jumlah,transactions_detail.subtotal,transactions.tgl as tgl_transaksi  FROM transactions_detail INNER JOIN transactions ON transactions_detail.transaksi_id = transactions.id";
+                $result = mysqli_query($koneksi, $query);
+                    $no=1;
                 while ($item = mysqli_fetch_assoc($result)) {
                   echo "
                       <tr>
-                        <td>$item[id_produk]</td>
+                        <td>$no</td>
+                        <td>$item[kode_produk]</td>
                         <td>$item[nama_produk]</td>
-                        <td>$item[flag_kategori]</td>
-                        <td>$item[stok]</td>
-                        <td>$item[satuan]</td>
-                        <td> ".rupiah($item['harga'])."</td>";
+                        <td>$item[tgl_transaksi]</td>
+                        <td>$item[harga]</td>
+                        <td>$item[jumlah]</td>
+                        <td>$item[subtotal]</td>
+                        ";
+                      $no++;
                     };
                     ?>
                     </tbody>
                   </table>
-                  <a href="<?php echo BASE_URL . "index.php?&module=product&action=list"; ?>">Kembali</a>
+                  <a href="<?php echo BASE_URL . "index.php?&module=salesRiwayatHistory&action=list"; ?>">Kembali</a>
 				          </div>
                 </div>
 <script>

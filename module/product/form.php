@@ -8,6 +8,7 @@
     $stok="";
     $satuan="";
     $harga="";
+    $produk_exp="";
 
 // jika id yg di kirim melalui url parameter sama yg ada di db, maka tampilkan
     if($id_produk){
@@ -20,6 +21,7 @@
         $stok = $item['stok'];
         $satuan = $item['satuan'];
         $harga = $item['harga'];
+        $produk_exp = $item['product_exp'];
     }
 
 ?>
@@ -44,11 +46,11 @@
                 <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                       <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" value='<?= $id_produk ?>' readonly   >
+                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Cth: PR001" value='<?= $id_produk ?>' readonly   >
                     </div>
                     <div class="mb-3">
                       <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Contoh: Indomie" value='<?= $nama_produk ?>' oninput="this.value = this.value.toUpperCase()" required autofocus>
+                      <input type="text" class="form-control" id="nama_produk"  name="nama_produk" aria-describedby="nama_produk" placeholder="Cth: Indomie" value='<?= $nama_produk ?>' oninput="this.value = this.value.toUpperCase()" required autofocus>
                     </div>
                     <div class="mb-3">
                       <label for="id_kategori" class="form-label">Category <span style="color: red; font-size:20px">*</span></label>
@@ -90,7 +92,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" value='<?= $harga ?>' oninput="this.value = this.value.toUpperCase()" required>
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Cth : 10000" value='<?= $harga ?>' oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="product_exp" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
+                      <input type="date" class="form-control" id="product_exp"  name="product_exp"  aria-describedby="product_exp" placeholder="Cth : 10000" value='<?= $produk_exp ?>' required>
                     </div>
                     <div class="modal-footer">
                     <a href="<?= BASE_URL . "index.php?module=product&action=list" ?>" class="btn btn-secondary me-2">Back</a>
