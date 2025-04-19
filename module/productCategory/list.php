@@ -37,7 +37,7 @@ if ($data['id_terakhir'] == null) {
               <div class="col-sm-6"><h3 class="mb-0">Product Categories</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Product</a></li>
+                  <li class="breadcrumb-item"><a href="#">Menu</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Product Categories</li>
                 </ol>
               </div>

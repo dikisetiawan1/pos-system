@@ -15,13 +15,13 @@
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
-            <!--begin::Row-->
+            <!--begin::Row--> 
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Data Users</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Users List</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Users</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data Users</li>
+                  <li class="breadcrumb-item"><a href="#">Menu</a></li>
+                  <li class="breadcrumb-item active" aria-current="page"> Users List</li>
                 </ol>
               </div>
               <!--end::Col-->

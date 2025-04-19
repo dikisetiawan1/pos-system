@@ -63,7 +63,7 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Product Code</th>
+                        <th scope="col">ID Product</th>
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>

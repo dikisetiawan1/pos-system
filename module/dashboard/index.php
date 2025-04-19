@@ -205,11 +205,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="col-4">
                   <!-- form untuk filter bulan -->
                   <form method="GET" class="mb-4"  style="margin-top: 70px;">
-                  <h3 class="mb-4">Grafik Transactions</h3>
+                  <h3 class="mb-4">Chart Transactions</h3>
                 <div class="input-group mb-3">
-                <label for="bulan" class="form-label"> Filter Bulan & Tahun :   </label> 
+                <label for="bulan" class="form-label"> Filter Mon & Year :   </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">
-                  <option value="">Semua</option>
+                  <option value="">All Date</option>
                   <?php
                   for ($i = 1; $i <= 12; $i++) {
                     $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';
@@ -219,7 +219,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 </select>
 
                 <select name="tahun" class="form-control" id="tahun" onchange="this.form.submit()">
-                  <option value="">Semua</option>
+                  <option value="">All Years</option>
                 <?php
                 $startYear = 2020; // tahun awal
                 $currentYear = date('Y'); // tahun sekarang
@@ -245,7 +245,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         data: {
                             labels: <?= json_encode($tanggal) ?>,
                             datasets: [{
-                                label: 'Jumlah Transaksi per Hari',
+                                label: 'Total Transactions per day',
                                 data: <?= json_encode($jumlah) ?>,
                                 borderColor: 'rgba(75, 192, 192, 1)',
                                 // backgroundColor: 'rgb(192, 75, 75)',
@@ -259,13 +259,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                                 x: {
                                     title: {
                                         display: true,
-                                        text: 'Tanggal'
+                                        text: 'Date'
                                     }
                                 },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: 'Jumlah Transaksi'
+                                        text: 'Total Transactions per day'
                                     },
                                     beginAtZero: true
                                 }

@@ -19,7 +19,7 @@ $result = mysqli_query($koneksi, $query);
               <div class="col-sm-6"><h3 class="mb-0">Report Transactions</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Sales</a></li>
+                  <li class="breadcrumb-item"><a href="#">Menu</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Report Transactions</li>
                 </ol>
               </div>
@@ -59,7 +59,7 @@ $result = mysqli_query($koneksi, $query);
                     <thead>
                       <tr>
                         <th>Date</th>
-                        <th>Transaction Code</th>
+                        <th>ID Transaction</th>
                         <th>Total</th>
                         <th>Payment</th>
                         <th>Change</th>
@@ -83,9 +83,6 @@ $result = mysqli_query($koneksi, $query);
                       <?php endif; ?>
                     </tbody>
                   </table>
-                <div class="card  mt-3 p-4">
-                  <!-- start:table -->  
-                </div>
               </div>
             </div>
           </div>

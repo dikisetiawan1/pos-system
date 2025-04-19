@@ -34,7 +34,7 @@
               <div class="col-sm-6 " ><h3 class="mb-0">Cashier Transaction</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Sales</a></li>
+                  <li class="breadcrumb-item"><a href="#">Menu</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Cashier transaction</li>
                 </ol>
               </div>
@@ -66,21 +66,21 @@
 
                         <div class="row mt-2 pb-2">
                         <div class="col-6">
-                        <label class="fw-bold">Potongan Disc % </label> <br>
+                        <label class="fw-bold">Shopping Disc % </label> <br>
                         <input type="number" id="diskon" name="diskon"  class="form-control"  min="0" max="100" value="0" oninput="hitungTotal()">
                         </div>
                     </div>
                         <!-- form input bayar dan kembalian -->
                         <div class="input-group ">
-                        <span class="input-group-text" >Bayar</span>
-                            <input type="number" class="form-control" id="bayar" name="bayar" min="0" placeholder="Input jumlah bayar" oninput="hitungKembalian()">
+                        <span class="input-group-text" >Pay</span>
+                            <input type="number" class="form-control" id="bayar" name="bayar" min="0" placeholder="Input payment" oninput="hitungKembalian()">
                         </div>
                         <br>
-                        <h3 class="pt-2">Kembalian: <span id="kembalian" name="kembalian" style="color: green;">Rp 0 </span></h3>
+                        <h3 class="pt-2">Change: <span id="kembalian" name="kembalian" style="color: green;">Rp 0 </span></h3>
 
                         <div id="bayarAlert" style="color:red;"></div>
 
-                        <button type="submit" class="btn btn-primary">Proses Transaksi</button>
+                        <button type="submit" class="btn btn-primary">Transaction Process</button>
                         </form>
                     </div>
                   </div>
