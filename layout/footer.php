@@ -118,6 +118,12 @@
     $('#flag').trigger('focus');
   });
 </script>
+  <script>
+  // Fokus saat modal kategori selesai muncul
+  $('#users').on('shown.bs.modal', function () {
+    $('#username').trigger('focus');
+  });
+</script>
 
 
 <!-- js datatables -->
