@@ -8,7 +8,7 @@ $tgl_sampai = $_GET['tgl_sampai'];
 header("Content-type: application/vnd-ms-excel");
 header("Content-Disposition: attachment; filename=laporan_transaksi_$tgl_mulai-$tgl_sampai.xls");
 
-$query = "SELECT tgl, id, total, bayar, kembalian 
+$query = "SELECT tgl, id, total, bayar, kembalian
           FROM transactions 
           WHERE DATE(tgl) BETWEEN '$tgl_mulai' AND '$tgl_sampai'
           ORDER BY tgl ASC";
@@ -21,11 +21,11 @@ $result = mysqli_query($koneksi, $query);
 <table border="1" cellpadding="5" cellspacing="0">
   <thead>
     <tr>
-      <th>Tanggal</th>
-      <th>Kode Transaksi</th>
+      <th>Date</th>
+      <th>Transaction Code</th>
       <th>Total</th>
-      <th>Bayar</th>
-      <th>Kembalian</th>
+      <th>Payment</th>
+      <th>Change</th>
     </tr>
   </thead>
   <tbody>
@@ -36,6 +36,7 @@ $result = mysqli_query($koneksi, $query);
       <td><?= $row['total'] ?></td>
       <td><?= $row['bayar'] ?></td>
       <td><?= $row['kembalian'] ?></td>
+
     </tr>
     <?php endwhile; ?>
   </tbody>

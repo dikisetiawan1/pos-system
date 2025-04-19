@@ -1,6 +1,4 @@
 <?php
-
-
 // Query dasar
 $query = "SELECT tgl, id, total, bayar, kembalian FROM transactions WHERE 1=1";
 
@@ -9,7 +7,6 @@ $query .= " ORDER BY tgl DESC";
 
 $result = mysqli_query($koneksi, $query);
 ?>
-
 
    <!--begin::App Main-->   
    <main class="app-main">
@@ -61,11 +58,11 @@ $result = mysqli_query($koneksi, $query);
                   <table id="example" class="table table-bordered table-striped">
                     <thead>
                       <tr>
-                        <th>Tanggal</th>
-                        <th>Kode Transaksi</th>
+                        <th>Date</th>
+                        <th>Transaction Code</th>
                         <th>Total</th>
-                        <th>Bayar</th>
-                        <th>Kembalian</th>
+                        <th>Payment</th>
+                        <th>Change</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -81,7 +78,7 @@ $result = mysqli_query($koneksi, $query);
                         <?php endwhile; ?>
                       <?php else: ?>
                         <tr>
-                          <td colspan="5" class="text-center">Tidak ada transaksi ditemukan.</td>
+                          <td colspan="5" class="text-center">Transaction Not Found.</td>
                         </tr>
                       <?php endif; ?>
                     </tbody>
