@@ -128,14 +128,6 @@
                       <p>Sales Report</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                  <a <?php if($module=="productReport" && $action == "list"){
-                  echo "class='nav-link active'";
-                }?>  href='<?php echo BASE_URL . "index.php?&module=productReport&action=list"; ?>' class="nav-link ">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Product Report </p>
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li class="nav-item <?php if($module=="users" || $module=="cashierManagement"){
@@ -155,11 +147,11 @@
                   echo "class='nav-link active'";
                 }?>  href='<?php echo BASE_URL . "index.php?&module=users&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Users Role</p>
+                      <p>Users Management</p>
                     </a>  
-                    <a <?php if($module=="cashierManagemen" && $action == "list"){
+                    <a <?php if($module=="cashierManagement" && $action == "list"){
                   echo "class='nav-link active'";
-                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagemen&action=list"; ?>' class="nav-link ">
+                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagement&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cashier Management</p>
                     </a>
