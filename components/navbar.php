@@ -75,6 +75,18 @@ $notifalertexp = $product_exp->num_rows;
                                   ";
                           } 
                           ?>
+
+                          <?php
+
+                          if($product_exp -> num_rows < 1){
+                            echo "";
+                          }else{
+                            echo"
+                            <a href='" . BASE_URL . "index.php?&module=productExpired&action=list' style='color:navy' class='dropdown-item' ><u>See Product Expired</u></a>";
+                          }
+                          
+                          ?>       
+                    </a>
             
               </div>
             </li>
@@ -99,8 +111,15 @@ $notifalertexp = $product_exp->num_rows;
                                   <div class='dropdown-divider'></div>
                                   ";
                           } 
+                          
                           ?>
-            
+                          <?php
+                          if($stokquery -> num_rows < 1){
+                            echo "";
+                          }else{
+                            echo"
+                            <a href='" . BASE_URL . "index.php?&module=productStock&action=list' style='color:navy' class='dropdown-item' ><u>See Product Stock</u></a>";
+                          }?>    
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->

@@ -98,7 +98,7 @@
 
                     if (!kode) return;
 
-                    fetch('produk.php?kode=' + kode)
+                    fetch('<?php echo BASE_URL."module/salesCashier/produk.php?kode=" ?>' + kode)
                         .then(res => res.json())
                         .then(data => {
                             if (data.nama_produk) {

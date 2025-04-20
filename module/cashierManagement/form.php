@@ -1,25 +1,4 @@
 <?php
-// Path: module/product/form.php
-//     $id_toko =isset($_GET['id_toko']) ? $_GET['id_toko'] : false;
-
-//     // inisialisasi variabel
-//     $nama_toko ="";
-//     $alamat="";
-//     $email="";
-//     $footer="";
-    
-// // jika id yg di kirim melalui url parameter sama yg ada di db, maka tampilkan
-//     if($id_toko){
-//         // $sql = "SELECT * FROM users WHERE id_user='$id_user'";
-//         $sql = "SELECT * FROM toko ";
-//         $query = mysqli_query($koneksi, $sql);
-//         $item = mysqli_fetch_array($query);
-
-//         $nama_toko = $item['nama_toko'];
-//         $alamat = $item['alamat'];
-//         $email = $item['email'];
-//         $footer = $item['footer'];
-//     }
 $notif = isset($_GET['notif']) ? $_GET['notif'] : false;  
 ?>
   
