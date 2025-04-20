@@ -1,6 +1,10 @@
 
 <?php
-
+$cetaklevel = $_SESSION['role'];
+if($cetaklevel == 'cashier' ){
+  echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
+  exit;
+}
 
 // Path: module/product/list.php
 // ambil data dari URL yang dikirim

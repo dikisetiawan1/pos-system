@@ -1,12 +1,4 @@
 
-<?php
-  // cek jika stock kurang dari 5 tampilkan alert stock menipis
-  $stokquery = mysqli_query($koneksi, "SELECT nama_produk, stok FROM products WHERE stok < 10 ");
-  $notifalert = $stokquery->num_rows;
-// cek jika product expired kurang dari 5 hari tampilkan alert expired
-$product_exp = mysqli_query($koneksi, "SELECT * FROM products WHERE product_exp = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND product_exp > CURDATE() ");
-$notifalertexp = $product_exp->num_rows;
-?>
 <!-- jam digital css -->
   <style>
      .clock {
@@ -33,7 +25,14 @@ $notifalertexp = $product_exp->num_rows;
     setInterval(updateClock, 1000);
     updateClock(); // initial call
 </script>
-
+<?php
+  // cek jika stock kurang dari 5 tampilkan alert stock menipis
+  $stokquery = mysqli_query($koneksi, "SELECT nama_produk, stok FROM products WHERE stok < 10 ");
+  $notifalert = $stokquery->num_rows;
+// cek jika product expired kurang dari 5 hari tampilkan alert expired
+$product_exp = mysqli_query($koneksi, "SELECT * FROM products WHERE product_exp = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND product_exp > CURDATE() ");
+$notifalertexp = $product_exp->num_rows;
+?>
 <nav class="app-header navbar navbar-expand bg-secondary-subtle sticky-top" data-bs-theme="light">
         <!--begin::Container-->
         <div class="container-fluid">

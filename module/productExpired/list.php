@@ -1,4 +1,9 @@
-
+<?php
+$cetaklevel = $_SESSION['role'];
+if($cetaklevel == 'cashier' ){
+  echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
+  exit;
+}?>
 
    <!--begin::App Main-->
    <main class="app-main">

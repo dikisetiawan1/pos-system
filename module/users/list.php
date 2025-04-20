@@ -1,5 +1,9 @@
 <?php
-
+$cetaklevel = $_SESSION['role'];
+if($cetaklevel == 'cashier' || $cetaklevel == 'admin' ){
+  echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
+  exit;
+}
 // Path: module/product/list.php
 // ambil data dari URL yang dikirim
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          

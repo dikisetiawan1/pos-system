@@ -1,5 +1,9 @@
 <?php
-
+$cetaklevel = $_SESSION['role'];
+if($cetaklevel == 'cashier'  ){
+  echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
+  exit;
+}
 // Query dasar
 $query = "SELECT tgl, id, total, bayar, kembalian FROM transactions WHERE 1=1";
 
