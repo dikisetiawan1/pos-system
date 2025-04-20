@@ -4,6 +4,7 @@ include_once 'function/koneksi.php';
 // ambil parameter bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : '';
 $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y'); // default tahun sekarang
+$notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;  
 
 $query = "SELECT DATE(tgl) as tanggal, COUNT(*) as jumlah 
           FROM transactions 
@@ -22,6 +23,17 @@ $jumlah = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $tanggal[] = $row['tanggal'];
     $jumlah[] = $row['jumlah'];
+}
+
+
+// notif success update password users
+if($notifupdate == 'success'){
+  echo '<script>Swal.fire({
+      title: "Data Anda berhasil update!",
+      text: "You clicked the button!",
+      icon: "success"
+    });</script>';  
+
 }
 ?>
 

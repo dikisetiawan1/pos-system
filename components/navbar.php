@@ -165,9 +165,14 @@ $notifalertexp = $product_exp->num_rows;
                   </p>
                 </li>
                 <!--end::User Image-->
+
                 <!--begin::Menu Footer-->
+                <?php
+                
+                $id_user = $_SESSION['id_user'];
+                ?>
                 <li class="user-footer">
-                  <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+                  <a href='<?php echo BASE_URL . "index.php?&module=users&action=changePassword&id_user=$id_user  "; ?>' class="btn btn-default btn-flat">Profile</a>
                   <a href="logout.php" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
                 <!--end::Menu Footer-->

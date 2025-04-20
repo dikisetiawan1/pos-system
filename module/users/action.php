@@ -22,6 +22,9 @@ if ($button == "send") {
     // jika button yang di klik adalah update
    mysqli_query($koneksi, "UPDATE users SET username='$username', nama='$nama', password='$password_hash', role='$role' WHERE id_user='$id_user'");
    header("location:" . BASE_URL . "index.php?&module=users&action=list&notifupdate=success");
+}elseif ($button == "updatepassword") {
+    // jika button yang di klik adalah update password
+   mysqli_query($koneksi, "UPDATE users SET id_user='$id_user', username='$username', nama='$nama', password='$password_hash' WHERE id_user='$id_user'");
+   header("location:" . BASE_URL . "index.php?&module=dashboard&action=index&notifupdate=success");
+
 }
-
-
