@@ -149,9 +149,9 @@
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Users Management</p>
                     </a>  
-                    <a <?php if($module=="cashierManagement" && $action == "list"){
+                    <a <?php if($module=="cashierManagement" && $action == "form"){
                   echo "class='nav-link active'";
-                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagement&action=list"; ?>' class="nav-link ">
+                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagement&action=form"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cashier Management</p>
                     </a>

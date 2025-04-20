@@ -23,7 +23,7 @@
               <div class="col-sm-6"><h3 class="mb-0">Product Stock</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Product</a></li>
+                  <li class="breadcrumb-item"><a href="#">Menu</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Product stock</li>
                 </ol>
               </div>

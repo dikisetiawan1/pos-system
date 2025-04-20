@@ -15,14 +15,19 @@ $transaksi = mysqli_fetch_assoc($query);
 
 $query_detail = mysqli_query($koneksi, "SELECT * FROM transactions_detail WHERE transaksi_id = $id");
 
+// deskripsi nama toko di struk printer pos58
+$query_toko= mysqli_query($koneksi, "SELECT * FROM toko");
+$row_toko = mysqli_fetch_assoc($query_toko);
+
 $connector = new WindowsPrintConnector("POS58"); // Ganti dengan nama printer kamu
 $printer = new Printer($connector);
 
 // Header
 $printer->setJustification(Printer::JUSTIFY_CENTER);
-$printer->text("TOKMART BUMDES SEGAR\n");
-$printer->text("Jl. Karangsegar Pebayuran Bks\n");
-$printer->text("No WA. 085124564864\n");
+$printer->text("{$row_toko['nama_toko']}\n");
+$printer->text("{$row_toko['alamat']}\n");
+$printer->text("No. Tlp: {$row_toko['tlp']}\n");
+$printer->text("Email: {$row_toko['email']}\n");
 $printer->text("------------------------------\n");
 $printer->setJustification(Printer::JUSTIFY_LEFT);
 
@@ -42,14 +47,14 @@ $printer->text("Kembali: Rp " . $transaksi['kembalian'] . "\n");
 // Footer
 $printer->text("------------------------------\n");
 $printer->text("Terima kasih!\n");
-$printer->text("Jangan Lupa Kembali!\n");
+$printer->text("{$row_toko['footer']}!\n");
 $printer->cut();
 $printer->close();
 
 echo "<script>
     setTimeout(function(){
         window.location.href = 'index.php?&module=salesCashier&action=list&notiftransaksi=success';
-    }, 3000);
+    }, 2000);
 </script>";
 
 ?>
