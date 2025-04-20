@@ -61,7 +61,7 @@
                   
                 </ul>
               </li>
-              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productDiscount"){
+              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired"){
                 echo "menu-open";
               }
               ?>" >
@@ -98,11 +98,11 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                  <a <?php if($module=="productDiscount" && $action == "list"){
+                  <a <?php if($module=="productExpired" && $action == "list"){
                   echo "class='nav-link active'";
-                }?>  href='<?php echo BASE_URL . "index.php?&module=productDiscount&action=list"; ?>' class="nav-link ">
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productExpired&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Discount</p>
+                      <p>Product Expired</p>
                     </a>
                   </li>
                   
