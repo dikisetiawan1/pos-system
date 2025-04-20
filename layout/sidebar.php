@@ -1,10 +1,11 @@
+
 <aside class="app-sidebar bg-secondary-subtle shadow " data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand ">
           <!--begin::Brand Link-->
          <span style="color: #ffffff; font-size: 26px; text-align:center; font-weight:600 ;">POS BUMDES
         </span>
-            
+           
           <!--end::Brand Link-->
       
         </div>
@@ -19,6 +20,7 @@
               role="menu"
               data-accordion="false"
             > 
+            <!-- start akses admin dan superadmin -->
               <li class="nav-item " >
                 <a <?php if($module=="dashboard" && $action == "main"){
                   echo "class='nav-link active'";
@@ -30,6 +32,10 @@
                   </p>
                 </a>
               </li>
+              
+              <!-- end:akses -->
+
+              
               <li class="nav-item <?php if($module=="salesCashier" || $module=="salesRiwayatHistory"){
                 echo "menu-open";
               }
@@ -58,9 +64,11 @@
                       <p>Transaction History</p>
                     </a>
                   </li>
-                  
                 </ul>
               </li>
+             
+
+              <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'superadmin' ) : ?>
               <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired"){
                 echo "menu-open";
               }
@@ -105,9 +113,12 @@
                       <p>Product Expired</p>
                     </a>
                   </li>
-                  
                 </ul>
               </li>
+              <?php endif; ?>
+
+
+              <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'superadmin' ) : ?>
               <li class="nav-item <?php if($module=="salesReport" || $module=="productReport"){
                 echo "menu-open";
               }
@@ -128,8 +139,12 @@
                       <p>Sales Report</p>
                     </a>
                   </li>
+                 
                 </ul>
               </li>
+              <?php endif; ?>
+
+              <?php if ($_SESSION['role'] == 'superadmin' ) : ?>
               <li class="nav-item <?php if($module=="users" || $module=="cashierManagement"){
                 echo "menu-open";
               }
@@ -156,15 +171,17 @@
                       <p>Cashier Management</p>
                     </a>
                   </li>
-          
                 </ul>
               </li>
+              <?php endif; ?>
+
               <li>
-              <a href="./index.html" class="nav-link ">
+              <a href="logout.php" class="nav-link ">
               <i class="fas fa-sign-out-alt" style="color: #ffffff;"></i>
                       <p>Logout</p>
                     </a>
               </li>
+            
             </ul>
             <!--end::Sidebar Menu-->
           </nav>

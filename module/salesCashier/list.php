@@ -1,4 +1,5 @@
 <?php
+
 // Path: module/product/list.php
 // ambil data dari URL yang dikirim
   $notiftransaksi = isset($_GET['notiftransaksi']) ? $_GET['notiftransaksi'] : false;          
@@ -150,8 +151,10 @@
             // input total setelah diskon
               function hitungTotal() {
               const total = getTotal();
+              // const diskonitem = getDiskonItem(harga, diskonitem);
               const diskon = getDiskon(total);
               const totalSetelahDiskon = total - diskon;
+              // const totalSetelahDiskon = total - totaldiskon;
 
               document.getElementById("totalHarga").innerText = "Rp " + totalSetelahDiskon.toLocaleString() ;
               hitungKembalian();
@@ -163,7 +166,10 @@
               const persen = parseInt(document.getElementById("diskon").value) || 0;
               return Math.round(total * (persen / 100));
           }
-
+    // get diskon item
+          // function getDiskonItem(harga, diskonitem){
+          //   return Math.round(harga * (diskonitem / 100));
+          // }
 
             // helper untuk ambil total
             function getTotal() {

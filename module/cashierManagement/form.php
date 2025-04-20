@@ -1,4 +1,8 @@
 <?php
+include 'akses_admin.php';
+include 'akses_superadmin.php';
+
+
 $notif = isset($_GET['notif']) ? $_GET['notif'] : false;  
 ?>
   

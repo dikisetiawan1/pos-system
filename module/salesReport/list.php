@@ -1,4 +1,5 @@
 <?php
+
 // Query dasar
 $query = "SELECT tgl, id, total, bayar, kembalian FROM transactions WHERE 1=1";
 
@@ -38,7 +39,7 @@ $result = mysqli_query($koneksi, $query);
             <input type="date" name="tgl_mulai" class="form-control" required>
             <label for="tgl_mulai" class="form-label">To</label>
             <input type="date" name="tgl_sampai" class="form-control"  required>
-            <button type="submit" class="btn btn-primary mt-2 mb-4">Download PDF</button>
+            <button type="submit" class="btn btn-primary mt-2 mb-4">Export PDF</button>
           </form>
               </div>
 

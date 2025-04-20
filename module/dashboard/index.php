@@ -1,6 +1,5 @@
 <?php
 include_once 'function/koneksi.php';
-
 // ambil parameter bulan dan tahun dari URL
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : '';
 $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y'); // default tahun sekarang

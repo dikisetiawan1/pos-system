@@ -1,5 +1,7 @@
 
 <?php
+
+
 // Path: module/product/list.php
 // ambil data dari URL yang dikirim
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
