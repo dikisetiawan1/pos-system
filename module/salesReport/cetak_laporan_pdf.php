@@ -9,9 +9,7 @@ use Dompdf\Options;
 $tgl_mulai = $_GET['tgl_mulai'];
 $tgl_sampai = $_GET['tgl_sampai'];
 
-$query = "SELECT tgl, id, total, bayar, kembalian
-          FROM transactions 
-          WHERE DATE(tgl) BETWEEN '$tgl_mulai' AND '$tgl_sampai'
+$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE DATE(tgl) BETWEEN '$tgl_mulai' AND '$tgl_sampai'
           ORDER BY tgl ASC";
 
 $result = mysqli_query($koneksi, $query);
@@ -31,6 +29,7 @@ $html .= "<table border='1' cellpadding='5' cellspacing='0' width='100%'>
                     <th>Total</th>
                     <th>Payment</th>
                     <th>Change</th>
+                    <th>User</th>
                 </tr>
             </thead>
             <tbody>";
@@ -42,6 +41,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <td>Rp" . number_format($row['total'], 0, ',', '.') . "</td>
                 <td>Rp" . number_format($row['bayar'], 0, ',', '.') . "</td>
                 <td>Rp" . number_format($row['kembalian'], 0, ',', '.') . "</td>
+                <td>{$row['nama']}</td>
               </tr>";
 
     // Tambah ke subtotal

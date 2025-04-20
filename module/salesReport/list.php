@@ -4,10 +4,10 @@ if($cetaklevel == 'cashier'  ){
   echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
   exit;
 }
-// Query dasar
-$query = "SELECT tgl, id, total, bayar, kembalian FROM transactions WHERE 1=1";
+// Query transactions
+$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE 1=1";
 
-// Urutkan hasil
+// Mengurutkan hasil data transaksi terbaru
 $query .= " ORDER BY tgl DESC";
 
 $result = mysqli_query($koneksi, $query);
@@ -68,6 +68,7 @@ $result = mysqli_query($koneksi, $query);
                         <th>Total</th>
                         <th>Payment</th>
                         <th>Change</th>
+                        <th>User</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -79,6 +80,7 @@ $result = mysqli_query($koneksi, $query);
                             <td>Rp<?= number_format($row['total'], 0, ',', '.') ?></td>
                             <td>Rp<?= number_format($row['bayar'], 0, ',', '.') ?></td>
                             <td>Rp<?= number_format($row['kembalian'], 0, ',', '.') ?></td>
+                            <td><?= $row['nama'] ?></td>
                           </tr>
                         <?php endwhile; ?>
                       <?php else: ?>

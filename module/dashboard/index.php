@@ -146,10 +146,8 @@ if($notifupdate == 'success'){
                            }else{
                              echo"
                               <a href='".BASE_URL . "index.php?&module=productCategory&action=list'
-                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}
-                                  
+                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}     
                          ?>   
-                  
                 </div>
                 <!--end::Small Box Widget 2-->
               </div>
@@ -244,7 +242,7 @@ if($notifupdate == 'success'){
                 <div class="col-4">
                   <!-- form untuk filter bulan -->
                   <form method="GET" class="mb-4"  style="margin-top: 70px;">
-                  <h3 class="mb-4">Chart Transactions</h3>
+                  <h3 class="mb-4">Chart Line Transactions</h3>
                 <div class="input-group mb-3">
                 <label for="bulan" class="form-label"> Filter Mon & Years :     </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">

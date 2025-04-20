@@ -1,9 +1,3 @@
-<?php
-$cetaklevel = $_SESSION['role'];
-if($cetaklevel == 'cashier' ){
-  echo '<script>window.location.href = "'.BASE_URL.'index.php?page=dashboard";</script>';
-  exit;
-}?>
 
    <!--begin::App Main-->
    <main class="app-main">
@@ -13,11 +7,11 @@ if($cetaklevel == 'cashier' ){
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Products List Expired</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Log Activity Users </h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Menu</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Product List Expired</li>
+                  <li class="breadcrumb-item active" aria-current="page">Log Activity Users</li>
                 </ol>
               </div>
               <!--end::Col-->
@@ -29,44 +23,48 @@ if($cetaklevel == 'cashier' ){
               </div>
               </div>
               <div class="col mt-2">
-    
+
                 <div class="card  mt-3 p-4">
                   <!-- start:table -->  
               <table id="example" class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">ID Product</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Prod exp</th>
-                      
+                        <th scope="col">User</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Datetime</th>
+                     
                       </tr>
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga,products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori WHERE product_exp = DATE_ADD(CURDATE(), INTERVAL 1 DAY) AND product_exp > CURDATE()";
+                  $query = "SELECT log_aktivitas.*, users.nama 
+                  FROM log_aktivitas 
+                  JOIN users ON users.id_user = log_aktivitas.id_user
+                  ORDER BY waktu DESC
+                  ";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
-                while ($item = mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                   echo "
                       <tr>
                         <td>$no</td>
-                        <td>$item[id_produk]</td>
-                        <td>$item[nama_produk]</td>
-                        <td>$item[flag_kategori]</td>
-                        <td> $item[product_exp]</td>
+                        <td>$row[nama]</td>
+                        <td>$row[aksi]</td>
+                        <td>$row[keterangan]</td>
+                        <td>".date('d-m-Y H:i:s', strtotime($row['waktu']))."</td>
                         
                       </tr>";
                       $no++;
                     };
                    }else{
                     echo '<script>Swal.fire({
-                    title: "Product List Expired empty!",
-                    text: "You clicked the button!",
-                    icon: "warning"
-                  });</script>';
+                      title: "Log Activity Is Empty!",
+                      text: "You clicked the button!",
+                      icon: "error"
+                    });</script>';
                    } ?>
                     </tbody>
                   </table>

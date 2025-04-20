@@ -14,6 +14,7 @@ if($cetaklevel == 'cashier' ){
   // ambil id yg dikirim untuk proses hapus item
   $id_kategori = isset($_GET['id_kategori']) ? $_GET['id_kategori'] : false;
   mysqli_query($koneksi, "DELETE FROM kategori WHERE id_kategori='$id_kategori'");
+  logAktivitas($_SESSION['id_user'], 'Hapus Produk', "Hapus produk ID: $id_kategori");
 
 
   // Ambil kode terakhir dari tabel produk

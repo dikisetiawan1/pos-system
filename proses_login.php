@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'function/helper.php';
 include 'function/koneksi.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -14,7 +15,7 @@ if ($user = mysqli_fetch_assoc($query)) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['nama'] = $user['nama'];
         $_SESSION['role'] = $user['nama_role']; // misalnya: admin, kasir
-
+        logAktivitas($user['id_user'], 'Login', 'Login ke sistem');
         header("Location: index.php");
         exit;
     } else {

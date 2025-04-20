@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once '../../function/helper.php';
 include_once '../../function/koneksi.php';
 
@@ -23,12 +23,14 @@ if (mysqli_num_rows($cek_id) || mysqli_num_rows($cek_produkName) > 0 ) {
     header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=failed");
 }else{
     mysqli_query($koneksi, "INSERT INTO products (id_produk, nama_produk, id_kategori, stok, satuan, harga, product_exp) 
-       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga','$produk_exp')   ");
+       VALUES ('$id_produk','$nama_produk','$id_kategori','$stok','$satuan','$harga','$produk_exp')");
+       logAktivitas($_SESSION['id_user'], 'Add Produk', "Melakukan Penambahan Produk ID: $id_produk");
       header("location:" . BASE_URL . "index.php?&module=product&action=list&notif=success");
   
 }}elseif ($button == "update") {
     // jika button yang di klik adalah update
    mysqli_query($koneksi, "UPDATE products SET nama_produk='$nama_produk', id_kategori='$id_kategori', stok='$stok', satuan='$satuan', harga='$harga', product_exp='$produk_exp' WHERE id_produk='$id_produk'");
+   logAktivitas($_SESSION['id_user'], 'Update Produk', "Melakukan Ubah Produk ID: $id_produk");
    header("location:" . BASE_URL . "index.php?&module=product&action=list&notifupdate=success");
 }
 

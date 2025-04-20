@@ -2,15 +2,15 @@
 <html lang="en">
  <?php  
 
+include 'function/koneksi.php';
+include 'function/helper.php';
+include 'layout/header.php';
 include 'cek_login.php';
- include 'function/koneksi.php';
- include 'function/helper.php';
- include 'layout/header.php';
 
 
 //  $page = isset($_GET['page']) ? $_GET['page'] : false;
- $module = isset($_GET['module']) ? $_GET['module'] : false;
- $action = isset($_GET['action']) ? $_GET['action'] : false;
+ $module = isset($_GET['module']) ? $_GET['module'] : 'dashboard';
+ $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
  ?> 
   <!--begin::Body-->

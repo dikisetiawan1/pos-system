@@ -12,6 +12,8 @@ if($cetaklevel == 'cashier' || $cetaklevel == 'admin' ){
   // ambil id yg dikirim untuk proses hapus item
   $id_user = isset($_GET['id_user']) ? $_GET['id_user'] : false;
   mysqli_query($koneksi, "DELETE FROM users WHERE id_user='$id_user'");
+  logAktivitas($_SESSION['id_user'], 'Hapus users', "Melakukan Hapus User ID: $id_user");
+
   ?>
 
    <!--begin::App Main-->

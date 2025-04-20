@@ -144,7 +144,7 @@
               <?php endif; ?>
 
               <?php if ($_SESSION['role'] == 'superadmin' ) : ?>
-              <li class="nav-item <?php if($module=="users" || $module=="cashierManagement"){
+              <li class="nav-item <?php if($module=="users" || $module=="cashierManagement" || $module=="cashierLoguser"){
                 echo "menu-open";
               }
               ?>" >
@@ -168,6 +168,12 @@
                 }?>  href='<?php echo BASE_URL . "index.php?&module=cashierManagement&action=form"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Cashier Management</p>
+                    </a>
+                    <a <?php if($module=="cashierLoguser" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=cashierLoguser&action=list"; ?>' class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Log Activity Users</p>
                     </a>
                   </li>
                 </ul>
