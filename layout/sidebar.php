@@ -19,12 +19,12 @@
               data-lte-toggle="treeview"
               role="menu"
               data-accordion="false"
-            > 
+            >
             <!-- start akses admin dan superadmin -->
               <li class="nav-item " >
                 <a <?php if($module=="dashboard" && $action == "main"){
                   echo "class='nav-link active'";
-                }?> href='<?php echo BASE_URL . "index.php?&module=dashboard&action=main"; ?>' class="nav-link" >
+                }?> href='<?php echo BASE_URL . "index.php?&module=dashboard&action=index"; ?>' class="nav-link" >
                 <i class="fas fa-tachometer-alt" style="color: #ffffff;"></i>
                   <p>
                     Dashboard
@@ -32,10 +32,9 @@
                   </p>
                 </a>
               </li>
-              
-              <!-- end:akses -->
 
-              
+          
+              <!-- end:akses -->
               <li class="nav-item <?php if($module=="salesCashier" || $module=="salesRiwayatHistory"){
                 echo "menu-open";
               }

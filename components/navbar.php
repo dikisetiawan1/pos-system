@@ -48,6 +48,7 @@ $notifalertexp = $product_exp->num_rows;
           <div class="clock" id="clock">00:00:00</div>
           </li>
           </ul>
+          <i class="fas fa-circle text-success " style="font-size: 10px; padding-right:5px; padding-left:10px; "></i> Active 
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
@@ -74,13 +75,13 @@ $notifalertexp = $product_exp->num_rows;
                           ?>
 
                           <?php
-
-                          if($product_exp -> num_rows < 1){
-                            echo "";
-                          }else{
-                            echo"
-                            <a href='" . BASE_URL . "index.php?&module=productExpired&action=list' style='color:navy' class='dropdown-item' ><u>See Product Expired</u></a>";
-                          }
+                         
+                          if($product_exp -> num_rows < 1 || $_SESSION['role'] == 'cashier' ){
+                              echo "";
+                            }else{
+                              echo"
+                              <a href='" . BASE_URL . "index.php?&module=productExpired&action=list' style='color:navy' class='dropdown-item' ><u>See Product Expired</u></a>";
+                            }
                           
                           ?>       
                     </a>
@@ -111,12 +112,14 @@ $notifalertexp = $product_exp->num_rows;
                           
                           ?>
                           <?php
-                          if($stokquery -> num_rows < 1){
-                            echo "";
-                          }else{
-                            echo"
-                            <a href='" . BASE_URL . "index.php?&module=productStock&action=list' style='color:navy' class='dropdown-item' ><u>See Product Stock</u></a>";
-                          }?>    
+                         
+                          if($_SESSION['role'] == 'cashier' || $stokquery -> num_rows < 1 ){ 
+                              echo "";
+                            }else{
+                              echo"
+                              <a href='" . BASE_URL . "index.php?&module=productStock&action=list' style='color:navy' class='dropdown-item' ><u>See Product Stock</u></a>";
+                            }
+                          ?>    
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
@@ -133,30 +136,40 @@ $notifalertexp = $product_exp->num_rows;
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="template/dist/assets/img/user2-160x160.jpg"
+                  src="template/dist/assets/img/user.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Diki Setiawan</span>
+                <span class="d-none d-md-inline">
+                <?php 
+                $nama = $_SESSION['nama'];
+                $role = $_SESSION['role'];
+                 echo "$nama - $role";
+                 ?>
+                 </span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="template/dist/assets/img/user2-160x160.jpg"
+                    src="template/dist/assets/img/user.png"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Diki setiawan
-                    <small>Administrator</small>
+                    <?php
+                    $nama = $_SESSION['nama'];
+                    $role = $_SESSION['role'];
+                    echo"$nama";
+                    echo "<small>$role</small>";
+                    ?>
                   </p>
                 </li>
                 <!--end::User Image-->
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                  <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+                  <a href="logout.php" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
                 <!--end::Menu Footer-->
               </ul>

@@ -75,6 +75,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Password</th>
                         <th scope="col">Role</th>
                         <th scope="col">Action</th>
@@ -82,7 +83,7 @@
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT users.id_user, users.username, users.password, users.role, role.nama_role FROM users INNER JOIN role ON users.role = role.id_role ORDER BY id_user DESC";
+                $query = "SELECT users.id_user, users.username,users.nama, users.password, users.role, role.nama_role FROM users INNER JOIN role ON users.role = role.id_role ORDER BY id_user DESC";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
@@ -91,6 +92,7 @@
                       <tr>
                         <td>$no</td>
                         <td>$row[username]</td>
+                        <td>$row[nama]</td>
                         <td>********</td>
                         <td>$row[nama_role]</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=users&action=form&id_user=$row[id_user]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
@@ -131,6 +133,10 @@
                     <div class="mb-3" >
                       <label for="username" class="form-label">Username<span style="color: red; font-size:20px" >*</span></label>
                       <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Cth: diki" required >
+                    </div>
+                    <div class="mb-3" >
+                      <label for="nama" class="form-label">Name<span style="color: red; font-size:20px" >*</span></label>
+                      <input type="text" class="form-control" id="nama" name="nama" aria-describedby="nama" placeholder="Cth: diki" required >
                     </div>
                     <div class="mb-3">
                       <label for="password" class="form-label">Password <span style="color: red; font-size:20px">*</span></label>

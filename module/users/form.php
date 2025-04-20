@@ -4,18 +4,20 @@
 
     // inisialisasi variabel
     $username ="";
+    $nama ="";
     $password_hash="";
     $role="";
     
 // jika id yg di kirim melalui url parameter sama yg ada di db, maka tampilkan
     if($id_user){
         // $sql = "SELECT * FROM users WHERE id_user='$id_user'";
-        $sql = "SELECT users.id_user, users.username, users.password, users.role, role.nama_role, role.id_role FROM users INNER JOIN role ON users.role = role.id_role WHERE id_user='$id_user'";
+        $sql = "SELECT users.id_user, users.username,users.nama, users.password, users.role, role.nama_role, role.id_role FROM users INNER JOIN role ON users.role = role.id_role WHERE id_user='$id_user'";
         $query = mysqli_query($koneksi, $sql);
         $item = mysqli_fetch_array($query);
 
         $id_user = $item['id_user'];
         $username = $item['username'];
+        $nama = $item['nama'];
         $password_hash = $item['password'];
         $id_role = $item['id_role'];
     }
@@ -47,6 +49,10 @@
                     <div class="mb-3">
                       <label for="username" class="form-label">Username<span style="color: red; font-size:20px">*</span></label>
                       <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Cth: John do" value='<?= $username ?>' autofocus>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nama" class="form-label">Name<span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="nama" name="nama" aria-describedby="nama" placeholder="Cth: John do" value='<?= $nama ?>' autofocus>
                     </div>
                     <div class="mb-3">
                       <label for="password" class="form-label">Password<span style="color: red; font-size:20px">*</span></label>

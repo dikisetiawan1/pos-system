@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en">
  <?php  
+
+include 'cek_login.php';
  include 'function/koneksi.php';
  include 'function/helper.php';
  include 'layout/header.php';
- include 'cek_login.php';
+
 
 //  $page = isset($_GET['page']) ? $_GET['page'] : false;
  $module = isset($_GET['module']) ? $_GET['module'] : false;

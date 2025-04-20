@@ -1,7 +1,4 @@
 <?php
-include 'akses_admin.php';
-include 'akses_superadmin.php';
-
 
 $notif = isset($_GET['notif']) ? $_GET['notif'] : false;  
 ?>
@@ -41,11 +38,11 @@ $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
                       <input type="text" class="form-control" id="id_user" name="id_user" aria-describedby="id_user" placeholder="Cth: John do"  autofocus>
                     </div> -->
                     <div class="mb-3">
-                      <label for="nama_toko" class="form-label">Nama Toko<span style="color: red; font-size:20px">*</span></label>
+                      <label for="nama_toko" class="form-label">Shop name<span style="color: red; font-size:20px">*</span></label>
                       <input type="text" class="form-control" id="nama_toko" name="nama_toko" aria-describedby="nama_toko" placeholder="Cth: Tokmart" oninput="this.value = this.value.toUpperCase()" autofocus>
                     </div>
                     <div class="mb-3">
-                      <label for="alamat" class="form-label">Alamat<span style="color: red; font-size:20px">*</span></label>
+                      <label for="alamat" class="form-label">Address<span style="color: red; font-size:20px">*</span></label>
                       <input type="text" class="form-control" id="alamat"  name="alamat" aria-describedby="alamat" placeholder="Cth: Jl.segaran"  required >
                     </div>
                     <div class="mb-3">
@@ -73,8 +70,8 @@ $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nama Toko</th>
-                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Shop Name</th>
+                                    <th scope="col">Addres</th>
                                     <th scope="col">Tlp</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Footer</th>
