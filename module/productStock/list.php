@@ -37,10 +37,7 @@ if($cetaklevel == 'cashier' ){
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productStock">
-            <i class="fas fa-plus" style="color: #ffffff;"></i> Product
-            </button> -->
-            
+            <a href="<?php echo BASE_URL . "module/productStock/export.php"; ?>" class="btn btn-primary">Export</a>
               </div>
               </div>
               <div class="col mt-2">

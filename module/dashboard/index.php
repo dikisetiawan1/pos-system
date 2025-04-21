@@ -264,7 +264,7 @@ if($notifbackup == 'success'){
                 <div class="col-8 card">
                   <!-- form untuk filter bulan -->
                   <form method="GET" class="mb-4 mt-4">
-                  <h3 class="mb-4">Transactions Per Day (Chart Line)</h3>
+                  <h3 class="mb-4">Transactions Per Day (Line Chart)</h3>
                 <div class="input-group mb-3">
                 <label for="bulan" class="form-label"> Filter Mon & Years :     </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">

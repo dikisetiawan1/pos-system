@@ -22,6 +22,43 @@ session_start();
         box-shadow: 0 0 20px rgba(0,0,0,0.1);
         animation: fadeIn 1s ease;
       }
+      /* Container untuk watermark grid */
+    /* Watermark Grid (sekali di satu layar) */
+    .watermark-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fit, 80px);
+  opacity: 0.05;
+  transform: rotate(-30deg);
+  pointer-events: none;
+  user-select: none;
+}
+
+.watermark-layer span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+@keyframes floating {
+  0% { transform: translateY(0px) rotate(-30deg); }
+  50% { transform: translateY(10px) rotate(-30deg); }
+  100% { transform: translateY(0px) rotate(-30deg); }
+}
+
+.watermark-layer {
+  animation: floating 8s ease-in-out infinite;
+}
+
+
       @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -50,7 +87,17 @@ session_start();
                       icon: "error"
                     });</script>';
   }?>
+  <!-- start:text watermark -->
+ <!-- Watermark satu layar -->
 
+ <div class="watermark-layer">
+  <?php for ($i = 0; $i < 75; $i++): ?>
+    <span>POS SYSTEM</span>
+  <?php endfor; ?>
+</div>
+
+
+  <!-- end:text Watermark -->
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-4">
