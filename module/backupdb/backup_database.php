@@ -4,7 +4,9 @@ $user = "root";
 $password = ""; // kosongkan kalau root tidak pakai password
 $host = "localhost";
 $path_mysqldump = "C:\\xampp\\mysql\\bin\\mysqldump.exe";
-$nama_file = "backups_db/backup_" . date("Ymd_His") . ".sql";
+// $nama_file = "backups_db/backup_" . date("Ymd_His") . ".sql";
+$backup_folder = "C:/xampp/backup_pos/";
+$nama_file = "$backup_folder/backup_" . date("Ymd_His") . ".sql";
 
 $command = "\"$path_mysqldump\" -u $user " .
            ($password !== "" ? "-p$password " : "") .

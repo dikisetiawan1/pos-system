@@ -8,9 +8,8 @@ if (!isset($_SESSION['login'])) {
     exit;
 }
 
-
 // Set waktu timeout dalam detik (contoh: 15 menit)
-$timeout = 600; // 600 detik = 10 menit
+$timeout = 1800; // 1800 detik = 30 menit
 
 // Cek apakah user sudah login
 if (!isset($_SESSION['id_user'])) {
