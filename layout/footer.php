@@ -141,7 +141,7 @@ $(document).ready(function() {
 
   function timerIncrement() {
       idleTime++;
-      if (idleTime > 29) { // lebih dari 14 menit (next 1 menit PHP akan tendang)
+      if (idleTime > 14) { // lebih dari 14 menit (next 1 menit PHP akan tendang)
           window.location.href = "logout.php?reason=idle";
       }
   }

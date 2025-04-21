@@ -64,11 +64,11 @@ session_start();
             <?php endif; ?>
             <form action="proses_login.php" method="post">
               <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
+                <label for="username" class="form-label">Username<span style="color: red; font-size:20px" >*</span></label>
                 <input type="text" name="username" class="form-control" required autofocus>
               </div>
               <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Password<span style="color: red; font-size:20px" >*</span></label>
                 <div class="input-group">
                   <input type="password" name="password" id="password" class="form-control" required>
                   <button class="btn btn-outline-secondary" type="button" id="togglePassword">

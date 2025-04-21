@@ -7,6 +7,8 @@ $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y'); // default tahun se
 $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;  
 $notifbackup = isset($_GET['notifbackup']) ? $_GET['notifbackup'] : false;  
 
+// untuk menampilkan data transaksi berdasarkan bulan dan tahun yang dipilih
+// chart line data transaksi per hari
 $query = "SELECT DATE(tgl) as tanggal, COUNT(*) as jumlah 
           FROM transactions 
           WHERE YEAR(tgl) = '$tahun'";
@@ -26,6 +28,29 @@ while ($row = mysqli_fetch_assoc($result)) {
     $jumlah[] = $row['jumlah'];
 }
 
+// chart pie 5 data produk terlaris
+$query = "SELECT transactions_detail.nama_produk, SUM(transactions_detail.jumlah) as total_terjual
+          FROM transactions_detail
+          JOIN products ON products.id_produk = transactions_detail.kode_produk
+          GROUP BY products.id_produk
+          ORDER BY total_terjual DESC
+          LIMIT 10";
+$result = mysqli_query($koneksi, $query);
+
+// siapkan data
+$labels = [];
+$data = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+    $labels[] = $row['nama_produk'];
+    $data[] = $row['total_terjual'];
+}
+
+// encode ke JSON untuk Chart.js
+$labels_json = json_encode($labels);
+$data_json = json_encode($data); 
+// end:chart pie 5 data produk terlaris
+
 // notif success update password users
 if($notifupdate == 'success'){
   echo '<script>Swal.fire({
@@ -41,7 +66,6 @@ if($notifbackup == 'success'){
       text: "You clicked the button!",
       icon: "success"
     });</script>';  
-
 }
 ?>
 
@@ -98,7 +122,6 @@ if($notifbackup == 'success'){
                     ></path>
                   </svg>
                   <?php
-                         
                          if($_SESSION['role'] == 'cashier' ){
                           echo"
                           <a href='#'
@@ -106,10 +129,8 @@ if($notifbackup == 'success'){
                            }else{
                              echo"
                               <a href='".BASE_URL . "index.php?&module=product&action=list'
-                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}
-                                  
+                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}       
                          ?>     
-              
                 </div>
                 <!--end::Small Box Widget 1-->
               </div>
@@ -146,7 +167,6 @@ if($notifbackup == 'success'){
                     ></path>
                   </svg>
                   <?php
-                         
                          if($_SESSION['role'] == 'cashier' ){
                           echo"
                           <a href='#'
@@ -195,10 +215,8 @@ if($notifbackup == 'success'){
                            }else{
                              echo"
                               <a href='".BASE_URL . "index.php?&module=salesRiwayatHistory&action=list'
-                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}
-                                  
+                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}       
                          ?>   
-                  
                 </div>
                 <!--end::Small Box Widget 3-->
               </div>
@@ -227,8 +245,7 @@ if($notifbackup == 'success'){
                       d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"
                     ></path>
                   </svg>
-                  <?php
-                         
+                  <?php 
                          if($_SESSION['role'] == 'cashier' ){
                           echo"
                           <a href='#'
@@ -236,21 +253,18 @@ if($notifbackup == 'success'){
                            }else{
                              echo"
                               <a href='".BASE_URL . "index.php?&module=users&action=list'
-                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}
-                                  
+                              class='small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover'> detail <i class='bi bi-link-45deg'></i></a>";}       
                          ?>   
-                
-              
                 </div>
                 <!--end::Small Box Widget 4-->
               </div>
               <!--end::Col-->
               <!-- row filter bulan dan tahun -->
-              <div class="row">
-                <div class="col-4">
+              <div class="row mt-5">
+                <div class="col-8 card">
                   <!-- form untuk filter bulan -->
-                  <form method="GET" class="mb-4"  style="margin-top: 70px;">
-                  <h3 class="mb-4">Chart Line Transactions</h3>
+                  <form method="GET" class="mb-4 mt-4">
+                  <h3 class="mb-4">Transactions Per Day (Chart Line)</h3>
                 <div class="input-group mb-3">
                 <label for="bulan" class="form-label"> Filter Mon & Years :     </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">
@@ -277,14 +291,12 @@ if($notifbackup == 'success'){
                 <!-- end:filter bulan dan tahun -->
                 </div>
                 </form>
-                </div>
-              </div>
-              
+               
               <!-- chart grafik transaksi -->
-              <canvas id="grafikTransaksi" height="250"></canvas>
+              <canvas id="grafikTransaksi" height="350" ></canvas>
                 <script>
-                    const ctx = document.getElementById('grafikTransaksi').getContext('2d');
-                    const grafikTransaksi = new Chart(ctx, {
+                    const cty = document.getElementById('grafikTransaksi').getContext('2d');
+                    const grafikTransaksi = new Chart(cty, {
                         type: 'line', // atau 'bar'
                         data: {
                             labels: <?= json_encode($tanggal) ?>,
@@ -317,6 +329,56 @@ if($notifbackup == 'success'){
                         }
                     });
                 </script>
+                </div>
+            <!-- end col chart -->
+            <!-- produk terlaris pie chart -->
+              <div class="col-4 card">
+                <h3 class="mb-3 mt-4 ">Best Selling Product (Pie Chart)</h3>
+                <canvas id="produkTerlarisChart" width="50" height="50"></canvas>
+                <script>
+                  const ctx = document.getElementById('produkTerlarisChart').getContext('2d');
+
+                  const data = {
+                    labels: <?= $labels_json ?>,
+                    datasets: [{
+                      label: 'Produk Terlaris',
+                      data: <?= $data_json ?>,
+                      backgroundColor: [
+                        '#4e73df',
+                        '#1cc88a',
+                        '#36b9cc',
+                        '#f6c23e',
+                        '#e74a3b',
+                        '#FF0B55',
+                        '#4E1F00',
+                        '#006A71',
+                        '#4F1C51',
+                        '#F38C79'
+                      ],
+                      borderColor: '#fff',
+                      borderWidth: 1
+                    }]
+                  };
+
+                  const config = {
+                    type: 'pie',
+                    data: data,
+                    options: {
+                      responsive: true,
+                      plugins: {
+                        legend: {
+                          position: 'bottom'
+                        }
+                      }
+                    }
+                  };
+
+                  new Chart(ctx, config);
+                </script>
+                </div>
+                </div>
+                <!-- end:row -->
+
             </div>
             <!-- end:chart grafik transaksi -->
             <!--end::Row-->
