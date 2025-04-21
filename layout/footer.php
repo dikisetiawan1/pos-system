@@ -138,6 +138,31 @@ $(document).ready(function() {
 } );
 
 
+// timeout jika user akses sistem melebihi batas waktu tertentu
+  let idleTime = 0;
+  setInterval(timerIncrement, 60000); // setiap 1 menit
+
+  function timerIncrement() {
+      idleTime++;
+      if (idleTime > 9) { // lebih dari 14 menit (next 1 menit PHP akan tendang)
+          window.location.href = "logout.php?reason=idle";
+      }
+  }
+
+  // Reset jika user aktif
+  window.onload = resetTimer;
+  document.onmousemove = resetTimer;
+  document.onkeypress = resetTimer;
+  document.onclick = resetTimer;
+  document.onscroll = resetTimer;
+
+  function resetTimer() {
+      idleTime = 0;
+  }
+
+
+
+
 
 
 

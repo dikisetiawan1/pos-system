@@ -144,7 +144,7 @@
               <?php endif; ?>
 
               <?php if ($_SESSION['role'] == 'superadmin' ) : ?>
-              <li class="nav-item <?php if($module=="users" || $module=="cashierManagement" || $module=="cashierLoguser"){
+              <li class="nav-item <?php if($module=="users" || $module=="cashierManagement" || $module=="cashierLoguser" || $module=="backup_database"){
                 echo "menu-open";
               }
               ?>" >
@@ -174,6 +174,12 @@
                 }?>  href='<?php echo BASE_URL . "index.php?&module=cashierLoguser&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Log Activity Users</p>
+                    </a>
+                    <a <?php if($module=="backup_database" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=backupdb&action=backup_database"; ?>' class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Backup database</p>
                     </a>
                   </li>
                 </ul>

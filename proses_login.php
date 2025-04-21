@@ -15,6 +15,7 @@ if ($user = mysqli_fetch_assoc($query)) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['nama'] = $user['nama'];
         $_SESSION['role'] = $user['nama_role']; // misalnya: admin, kasir
+        $_SESSION['last_activity'] = time();
         logAktivitas($user['id_user'], 'Login', 'Login ke sistem');
         header("Location: index.php");
         exit;

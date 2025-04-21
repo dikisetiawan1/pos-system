@@ -5,6 +5,7 @@ include_once 'function/koneksi.php';
 $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : '';
 $tahun = isset($_GET['tahun']) ? $_GET['tahun'] : date('Y'); // default tahun sekarang
 $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;  
+$notifbackup = isset($_GET['notifbackup']) ? $_GET['notifbackup'] : false;  
 
 $query = "SELECT DATE(tgl) as tanggal, COUNT(*) as jumlah 
           FROM transactions 
@@ -25,11 +26,18 @@ while ($row = mysqli_fetch_assoc($result)) {
     $jumlah[] = $row['jumlah'];
 }
 
-
 // notif success update password users
 if($notifupdate == 'success'){
   echo '<script>Swal.fire({
       title: "Data Anda berhasil update!",
+      text: "You clicked the button!",
+      icon: "success"
+    });</script>';  
+}
+// notif success backup database
+if($notifbackup == 'success'){
+  echo '<script>Swal.fire({
+      title: "Database Berhasil di Backup!",
       text: "You clicked the button!",
       icon: "success"
     });</script>';  

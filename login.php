@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,9 +36,20 @@
       integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
       crossorigin="anonymous"
     />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--end::Fonts-->
   </head>
   <body>
+
+  <?php
+  if (isset($_GET['timeout'])) {
+    echo '<script>Swal.fire({
+                      title: "Your session has expired. Please log in again!",
+                      text: "You clicked the button!",
+                      icon: "error"
+                    });</script>';
+  }?>
 
     <div class="container">
       <div class="row justify-content-center">
