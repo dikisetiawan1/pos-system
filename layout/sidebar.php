@@ -1,5 +1,5 @@
 
-<aside class="app-sidebar bg-secondary-subtle shadow " data-bs-theme="dark">
+<aside class="app-sidebar bg-secondary-subtle shadow "data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand ">
           <!--begin::Brand Link-->
@@ -12,7 +12,7 @@
         <!--end::Sidebar Brand-->
         <!--begin::Sidebar Wrapper-->
         <div class="sidebar-wrapper">
-          <nav class="mt-2">
+          <nav class="mt-2 sticky-top">
             <!--begin::Sidebar Menu-->
             <ul
               class="nav sidebar-menu flex-column"
@@ -22,7 +22,7 @@
             >
             <!-- start akses admin dan superadmin -->
               <li class="nav-item " >
-                <a <?php if($module=="dashboard" && $action == "main"){
+                <a <?php if($module=="dashboard" && $action == "index"){
                   echo "class='nav-link active'";
                 }?> href='<?php echo BASE_URL . "index.php?&module=dashboard&action=index"; ?>' class="nav-link" >
                 <i class="fas fa-tachometer-alt" style="color: #ffffff;"></i>
@@ -68,7 +68,7 @@
              
 
               <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'superadmin' ) : ?>
-              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired"){
+              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired" || $module=="productRetur"){
                 echo "menu-open";
               }
               ?>" >
@@ -110,6 +110,14 @@
                 }?>  href='<?php echo BASE_URL . "index.php?&module=productExpired&action=list"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Expired</p>
+                    </a>
+                  </li> 
+                  <li class="nav-item">
+                  <a <?php if($module=="productRetur" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productRetur&action=productReturList"; ?>' class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Product Retur</p>
                     </a>
                   </li>
                 </ul>

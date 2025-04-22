@@ -70,17 +70,10 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
     
 
-  
-
     <!-- script js grafik transaksi -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-
-
-<!-- jam digital -->
- 
-    
     
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="hhttps://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

@@ -16,13 +16,14 @@ include 'cek_login.php';
   <!--begin::Body-->
   <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <!--begin::App Wrapper-->
-    <div class="app-wrapper">
+    <div class="app-wrapper ">
       <!--begin::Navbar-->
       <?php
       include 'components/navbar.php';
       ?>
       <!--end::Navbar-->
       <!--begin::Sidebar-->
+      
       <?php
      include 'layout/sidebar.php';
      ?>
@@ -35,8 +36,13 @@ include 'cek_login.php';
         if (file_exists($filename)) {
             include_once($filename);
         } else {
-          // echo "The file $filename does not exist";
-            include_once("module/dashboard/index.php");
+                echo '<script>Swal.fire({
+              title: "Error 404!",
+              text: "Page Not Found!",
+              icon: "error"
+            });</script>';
+            // include_once("module/dashboard/index.php");
+            // include_once("404.php");
         }
       ?>
 

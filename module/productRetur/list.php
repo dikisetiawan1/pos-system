@@ -9,10 +9,8 @@ if($cetaklevel == 'cashier' ){
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
   $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
   $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;
-  // ambil id yg dikirim untuk proses hapus item
-  $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
-  mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
-  logAktivitas($_SESSION['id_user'], 'Hapus Produk', "Hapus produk ID: $id_produk");
+
+
   ?>
 
 
@@ -25,11 +23,11 @@ if($cetaklevel == 'cashier' ){
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Products List</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">Product List</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Menu</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Product List</li>
+                  <li class="breadcrumb-item active" aria-current="page">Product retur</li>
                 </ol>
               </div>
               <!--end::Col-->
@@ -37,45 +35,11 @@ if($cetaklevel == 'cashier' ){
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="<?php echo BASE_URL . "module/product/export.php"; ?>" class="btn btn-primary">Export</a>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="fas fa-plus" style="color: #ffffff;"></i> Product
-            </button>
-            
+            <a href="<?php echo BASE_URL . "index.php?&module=productRetur&action=productReturList"; ?>" class="btn btn-secondary">Back</a>
               </div>
               </div>
               <div class="col mt-2">
-            <!-- start:notifikasi -->
-            <!-- tampilkan alert notifikasi yg diambil dri url parameter -->
-              <?php
-              if($notif == 'success'){
-                echo '<script>Swal.fire({
-                    title: "Data berhasil ditambahkan!",
-                    text: "You clicked the button!",
-                    icon: "success"
-                  });</script>';  
-             
-              }elseif($notifupdate == 'success'){
-                echo '<script>Swal.fire({
-                  title: "Data berhasil diubah!",
-                  text: "You clicked the button!",
-                  icon: "success"
-                });</script>'; 
-              }elseif($notifdelete == 'success'){
-                echo '<script>Swal.fire({
-                  title: "Data berhasil dihapus!",
-                  text: "You clicked the button!",
-                  icon: "success"
-                });</script>';
-                
-              }elseif($notif == 'failed'){
-                echo '<script>Swal.fire({
-                  title: "Data tidak boleh duplikat!",
-                  text: "You clicked the button!",
-                  icon: "error"
-                });</script>'; }
-              ?>
-              <!-- end:notifikasi -->
+          
 
                 <div class="card  mt-3 p-4">
                   <!-- start:table -->  
@@ -87,15 +51,12 @@ if($cetaklevel == 'cashier' ){
                         <th scope="col">Product</th>
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Prod exp</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga,products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
+                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
@@ -107,11 +68,8 @@ if($cetaklevel == 'cashier' ){
                         <td>$item[nama_produk]</td>
                         <td>$item[flag_kategori]</td>
                         <td>$item[stok]</td>
-                        <td>$item[satuan]</td>
-                        <td> ".rupiah($item['harga'])."</td>
-                        <td> $item[product_exp]</td>
-                        <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
-                        <a href='" . BASE_URL . "index.php?&module=product&action=list&id_produk=$item[id_produk]&notifdelete=success' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
+                        <td> <a href='" . BASE_URL . "index.php?&module=productRetur&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-danger' ><i class='fas fa-undo'></i></a>  
+                       </td>
                       </tr>";
                       $no++;
                     };
@@ -135,7 +93,7 @@ if($cetaklevel == 'cashier' ){
 
     
             <!-- Form Modal input barang -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="productStock" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content"> 
                   <div class="modal-header">
@@ -145,10 +103,10 @@ if($cetaklevel == 'cashier' ){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                  <form action="<?php echo BASE_URL . "module/product/action.php"; ?>" method="POST" enctype="multipart/form-data">
+                  <form action="<?php echo BASE_URL . "module/productStock/action.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3" >
                       <label for="id_produk" class="form-label">Product Id <span style="color: red; font-size:20px" >*</span></label>
-                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Cth: PR001" oninput="this.value = this.value.toUpperCase()" required>
+                      <input type="text" class="form-control" id="id_produk" name="id_produk" aria-describedby="id_produk" placeholder="Contoh: PR001" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
                       <label for="nama_produk" class="form-label">Product name <span style="color: red; font-size:20px">*</span></label>
@@ -186,11 +144,7 @@ if($cetaklevel == 'cashier' ){
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Cth : 10000" oninput="this.value = this.value.toUpperCase()" required>
-                    </div>
-                    <div class="mb-3">
-                      <label for="harga" class="form-label">Tgl Exp <span style="color: red; font-size:20px">*</span></label>
-                      <input type="date" class="form-control" id="product_exp"  name="product_exp"  aria-describedby="product_exp" required>
+                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Contoh : 10000" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel </button>
@@ -200,8 +154,8 @@ if($cetaklevel == 'cashier' ){
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
                   <!-- end:modal -->
-     
+                
 
                 

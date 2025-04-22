@@ -333,7 +333,7 @@ if($notifbackup == 'success'){
             <!-- end col chart -->
             <!-- produk terlaris pie chart -->
               <div class="col-4 card">
-                <h3 class="mb-3 mt-4 ">Best Selling Product (Pie Chart)</h3>
+                <h3 class="mb-3 mt-4 "> 10 Best Selling Product (Pie Chart)</h3>
                 <canvas id="produkTerlarisChart" width="50" height="50"></canvas>
                 <script>
                   const ctx = document.getElementById('produkTerlarisChart').getContext('2d');

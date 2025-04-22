@@ -12,7 +12,7 @@ $query = "SELECT transactions.tgl, transactions.id, transactions.total, transact
 $result = mysqli_query($koneksi, $query);
 ?>
 
-<h3>Report Transaction</h3>
+<h3>Export Report Transaction</h3>
 <p>Periode: <?= date('d-m-Y', strtotime($tgl_mulai)) ?> s/d <?= date('d-m-Y', strtotime($tgl_sampai)) ?></p>
 
 <table border="1" cellpadding="5" cellspacing="0">

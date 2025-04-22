@@ -65,5 +65,5 @@ $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
 
-$dompdf->stream("laporan_transaksi_$tgl_mulai-$tgl_sampai.pdf", ["Attachment" => 1]);
+$dompdf->stream("export_laporan_transaksi_$tgl_mulai-$tgl_sampai.pdf", ["Attachment" => 1]);
 exit;
