@@ -265,10 +265,10 @@ if($notifbackup == 'success'){
                   <!-- form untuk filter bulan -->
                   <form method="GET" class="mb-4 mt-4">
                   <h3 class="mb-4">Transactions Per Day (Line Chart)</h3>
-                <div class="input-group mb-3">
-                <label for="bulan" class="form-label"> Filter Mon & Years :     </label> 
+                <div class="input-group mb-3">  
+                <label for="bulan" class="form-label"> Filter Months & Years :     </label> 
                 <select name="bulan" class="form-control" id="bulan" onchange="this.form.submit()">
-                  <option value="">All Date</option>
+                  <option value="">All Months</option>
                   <?php
                   for ($i = 1; $i <= 12; $i++) {
                     $selected = (isset($_GET['bulan']) && $_GET['bulan'] == $i) ? 'selected' : '';

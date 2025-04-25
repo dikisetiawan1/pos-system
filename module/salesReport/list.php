@@ -31,9 +31,8 @@ $result = mysqli_query($koneksi, $query);
               <!--end::Col-->
             </div>
             <!--end::Row-->
-              <div class="col mt-5">
-            <!-- start:notifikasi -->
-
+              <div class="col mt-5 mb-5">
+          
               <!-- filter form rentang tanggal--> 
                         <!-- row -->
             <div class="row">

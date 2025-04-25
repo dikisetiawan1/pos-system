@@ -14,9 +14,9 @@ include 'cek_login.php';
 
  ?> 
   <!--begin::Body-->
-  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+  <body class="layout-fixed sidebar-expand-lg bg-body-tertiary" style="overflow: hidden;">
     <!--begin::App Wrapper-->
-    <div class="app-wrapper ">
+    <div class="app-wrapper"  style="height: calc(100vh - 80px); overflow-y: auto;">
       <!--begin::Navbar-->
       <?php
       include 'components/navbar.php';

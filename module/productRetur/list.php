@@ -38,7 +38,7 @@ if($cetaklevel == 'cashier' ){
             <a href="<?php echo BASE_URL . "index.php?&module=productRetur&action=productReturList"; ?>" class="btn btn-secondary">Back</a>
               </div>
               </div>
-              <div class="col mt-2">
+              <div class="col mt-2 ">
           
 
                 <div class="card  mt-3 p-4">

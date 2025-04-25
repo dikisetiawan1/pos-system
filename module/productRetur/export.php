@@ -29,6 +29,7 @@ include_once '../../function/koneksi.php';
                                     <th scope="col">Product</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Stock Retur</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Reason</th>
 
                                   </tr>
