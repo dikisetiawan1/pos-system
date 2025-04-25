@@ -54,17 +54,18 @@
                         <td>$item[kode_produk]</td>
                         <td>$item[nama_produk]</td>
                         <td>$item[tgl_transaksi]</td>
-                        <td>$item[harga]</td>
+                        <td> ".rupiah($item['harga'])."</td>
                         <td>$item[jumlah]</td>
                         <td>$item[subtotal]</td>
                         ";
                       $no++;
                     };
                    }else{
-                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Transactions Hisotry Empty!</strong>!
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
+                    echo '<script>Swal.fire({
+                    title: "Transactions history is empty!",
+                    text: "You clicked the button!",
+                    icon: "warning"
+                  });</script>';
                    } ?>
                     </tbody>
                   </table>

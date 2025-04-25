@@ -63,7 +63,7 @@ if($cetaklevel == 'cashier' ){
                     };
                    }else{
                     echo '<script>Swal.fire({
-                    title: "Product List Expired empty!",
+                    title: "Product list expired is empty!",
                     text: "You clicked the button!",
                     icon: "warning"
                   });</script>';

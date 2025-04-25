@@ -61,7 +61,7 @@
                     };
                    }else{
                     echo '<script>Swal.fire({
-                      title: "Log Activity Is Empty!",
+                      title: "Log activity is empty!",
                       text: "You clicked the button!",
                       icon: "error"
                     });</script>';

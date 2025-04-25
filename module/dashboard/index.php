@@ -54,7 +54,7 @@ $data_json = json_encode($data);
 // notif success update password users
 if($notifupdate == 'success'){
   echo '<script>Swal.fire({
-      title: "Data Anda berhasil update!",
+      title: "Data updated successfully!",
       text: "You clicked the button!",
       icon: "success"
     });</script>';  
@@ -62,7 +62,7 @@ if($notifupdate == 'success'){
 // notif success backup database
 if($notifbackup == 'success'){
   echo '<script>Swal.fire({
-      title: "Database Berhasil di Backup!",
+      title: "Database backup successfully!",
       text: "You clicked the button!",
       icon: "success"
     });</script>';  

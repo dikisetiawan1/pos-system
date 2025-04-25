@@ -25,7 +25,8 @@ include_once '../../function/koneksi.php';
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Product Code</th>
-                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Purchase date</th>
+                                    <th scope="col">Product</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Stock Retur</th>
                                     <th scope="col">Reason</th>
@@ -39,15 +40,17 @@ include_once '../../function/koneksi.php';
                             $result = mysqli_query($koneksi, $query);
                             if($result->num_rows > 0){
                                 $no=1;
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($item = mysqli_fetch_assoc($result)) {
                               echo "
                                   <tr>
                                     <td>$no</td>
-                                    <td>$row[id_produk]</td>
-                                    <td>$row[nama_produk]</td>
-                                    <td>$row[tgl]</td>
-                                    <td>$row[stok_retur]</td>
-                                    <td>$row[ket]</td>
+                                    <td>$item[id_produk]</td>
+                                    <td>$item[tgl_transaksi]</td>
+                                    <td>$item[nama_produk]</td>
+                                    <td>$item[tgl]</td>
+                                    <td>$item[stok_retur]</td>
+                                    <td> ".rupiah($item['harga'])."</td>
+                                    <td>$item[ket]</td>
 
                                    ";
                                   $no++;

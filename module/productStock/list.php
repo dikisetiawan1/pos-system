@@ -92,10 +92,11 @@ if($cetaklevel == 'cashier' ){
                       $no++;
                     };
                    }else{
-                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Data belum ada!</strong> Silahkan inputkan data terlebih dahulu.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
+                    echo '<script>Swal.fire({
+                    title: "Product stock is empty!",
+                    text: "You clicked the button!",
+                    icon: "warning"
+                  });</script>';
                    } ?>
                     </tbody>
                   </table>

@@ -10,8 +10,8 @@
 
   if($notiftransaksi == 'success'){
     echo '<script>Swal.fire({
-        title: "Transaksi berhasil tersimpan!",
-        text: "Struk selesai di cetak!",
+        title: "Transactions successfully!",
+        text: "You clicked the button!",
         icon: "success"
       });</script>';  
  
@@ -55,7 +55,7 @@
                       <!-- form transaksi -->
                       <form method="POST" action="<?php echo BASE_URL . "module/salesCashier/proses.php"; ?>" id="formTransaksi">
                       <div class="produk-list" id="produkList">
-                        <div class="form-label fw-bold pb-4 pt-4">My Product Cart :</div>
+                        <div class="form-label fw-bold pb-4 pt-4">List Product Cart :</div>
                          </div>
                          <div id="produkHiddenInputs"></div>
                         <br>

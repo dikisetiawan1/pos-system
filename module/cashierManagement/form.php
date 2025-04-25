@@ -22,7 +22,7 @@ $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
             
             if($notif == 'success'){
               echo '<script>Swal.fire({
-                  title: "Toko berhasil diupdate!",
+                  title: "Data updated successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>';  
@@ -100,10 +100,11 @@ $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
                                   $no++;
                                 };
                               }else{
-                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Data belum ada!</strong> Silahkan inputkan user terlebih dahulu.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>';
+                                echo '<script>Swal.fire({
+                                title: "Shop name is empty!",
+                                text: "You clicked the button!",
+                                icon: "warning"
+                              });</script>';
                               } ?>
                                 </tbody>
                               </table>

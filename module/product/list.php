@@ -50,27 +50,27 @@ if($cetaklevel == 'cashier' ){
               <?php
               if($notif == 'success'){
                 echo '<script>Swal.fire({
-                    title: "Data berhasil ditambahkan!",
+                    title: "Data added successfully!",
                     text: "You clicked the button!",
                     icon: "success"
                   });</script>';  
              
               }elseif($notifupdate == 'success'){
                 echo '<script>Swal.fire({
-                  title: "Data berhasil diubah!",
+                  title: "Data update successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>'; 
               }elseif($notifdelete == 'success'){
                 echo '<script>Swal.fire({
-                  title: "Data berhasil dihapus!",
+                  title: "Data deleted successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>';
                 
               }elseif($notif == 'failed'){
                 echo '<script>Swal.fire({
-                  title: "Data tidak boleh duplikat!",
+                  title: "Data must be unique!",
                   text: "You clicked the button!",
                   icon: "error"
                 });</script>'; }

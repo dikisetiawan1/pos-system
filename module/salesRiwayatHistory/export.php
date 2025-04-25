@@ -45,7 +45,7 @@ include_once '../../function/koneksi.php';
                         <td>$item[kode_produk]</td>
                         <td>$item[nama_produk]</td>
                         <td>$item[tgl_transaksi]</td>
-                        <td>$item[harga]</td>
+                        <td> ".rupiah($item['harga'])."</td>
                         <td>$item[jumlah]</td>
                         <td>$item[subtotal]</td>
                         ";

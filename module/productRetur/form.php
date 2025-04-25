@@ -29,13 +29,13 @@
             <?php
              if($notifretur == 'success'){
                 echo '<script>Swal.fire({
-                  title: "Produk berhasil di retur!",
+                  title: "Product retur successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>'; 
               }elseif($notifretur == 'failed'){
                 echo '<script>Swal.fire({
-                  title: "Produk tidak berhasil di retur!",
+                  title: "Product retur failed!",
                   text: "You clicked the button!",
                   icon: "error"
                 });</script>'; }
@@ -78,6 +78,14 @@
                       <input type="number" class="form-control" id="stok_retur"  name="stok_retur"  aria-describedby="stok_retur" placeholder="0" required autofocus>
                     </div>
                     <div class="mb-3">
+                      <label for="tgl_transaksi" class="form-label">Transaction date <span style="color: red; font-size:20px">*</span></label>
+                      <input type="date" class="form-control" id="tgl_transaksi"  name="tgl_transaksi"  aria-describedby="tgl_transaksi" placeholder="0" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                      <label for="harga" class="form-label">Price<span style="color: red; font-size:20px">*</span></label>
+                      <input type="number" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="0" required autofocus>
+                    </div>
+                    <div class="mb-3">
                       <label for="exampleFormControlTextarea1"  class="form-label"> Reason <span style="color: red; font-size:20px">*</span></label>
                       <textarea class="form-control" name="ket" id="exampleFormControlTextarea1" rows="3" placeholder="Input reason here!" required></textarea>
                      
@@ -86,7 +94,7 @@
                    
                     <div class="modal-footer">
                     <a href="<?= BASE_URL . "index.php?module=productRetur&action=list" ?>" class="btn btn-secondary me-2">Back</a>
-                    <button type="submit" name="button" value="addupdate" class="btn btn-success">Retur</button>
+                    <button type="submit" name="button" value="addupdate" class="btn btn-success"><i class="fas fa-paper-plane" style="color: #ffffff;"></i></button>
                   </div>
                   </form>
                   <!-- end:form -->
@@ -99,8 +107,11 @@
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Product Code</th>
-                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Purchase date</th>
+                                    <th scope="col">Product </th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Stock Retur</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Reason</th>
 
                                   </tr>
@@ -112,23 +123,27 @@
                             $result = mysqli_query($koneksi, $query);
                             if($result->num_rows > 0){
                                 $no=1;
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($item = mysqli_fetch_assoc($result)) {
                               echo "
                                   <tr>
                                     <td>$no</td>
-                                    <td>$row[id_produk]</td>
-                                    <td>$row[nama_produk]</td>
-                                    <td>$row[stok_retur]</td>
-                                    <td>$row[ket]</td>
+                                    <td>$item[id_produk]</td>
+                                    <td>$item[tgl_transaksi]</td>
+                                    <td>$item[nama_produk]</td>
+                                    <td>$item[tgl]</td>
+                                    <td>$item[stok_retur]</td>
+                                    <td> ".rupiah($item['harga'])."</td>
+                                    <td>$item[ket]</td>
 
                                    ";
                                   $no++;
                                 };
                               }else{
-                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Data is empty!</strong> Please input product retur before.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>';
+                                echo '<script>Swal.fire({
+                                title: "Product retur list is empty!",
+                                text: "You clicked the button!",
+                                icon: "warning"
+                              });</script>';
                               } ?>
                                 </tbody>
                               </table>

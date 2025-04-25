@@ -48,7 +48,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="username" class="form-label">Username<span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Cth: John do" value='<?= $username ?>' autofocus>
+                      <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Cth: John do" value='<?= $username ?>' readonly autofocus>
                     </div>
                     <div class="mb-3">
                       <label for="nama" class="form-label">Name<span style="color: red; font-size:20px">*</span></label>

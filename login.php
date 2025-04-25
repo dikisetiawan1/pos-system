@@ -6,7 +6,7 @@ session_start();
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - POS Cashier</title>
+    <title>Login - POS Bumdes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
@@ -103,7 +103,7 @@ session_start();
         <div class="col-md-4">
           <div class="card p-4">
             <div class="text-center mb-4">
-              <h3 class="text-primary">POS SYSTEM BUMDES</h3>
+              <h3 class="text-primary">POS BUMDES</h3>
               <small class="text-muted">Welcome!, Please Login First.</small>
             </div>
             <?php if (isset($_SESSION['error'])) : ?>
@@ -126,7 +126,7 @@ session_start();
               <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
           </div>
-          <p class="text-white text-center mt-4 small">© 2025 POS System</p>
+          <p class="text-white text-center mt-4 small">© 2025 POS Bumdes</p>
         </div>
       </div>
     </div>

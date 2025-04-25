@@ -48,27 +48,27 @@ if($cetaklevel == 'cashier' || $cetaklevel == 'admin' ){
               <?php
               if($notif == 'success'){
                 echo '<script>Swal.fire({
-                    title: "User berhasil ditambahkan!",
+                    title: "User added successfully!",
                     text: "You clicked the button!",
                     icon: "success"
                   });</script>';  
              
               }elseif($notifupdate == 'success'){
                 echo '<script>Swal.fire({
-                  title: "User berhasil diubah!",
+                  title: "User updated successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>'; 
               }elseif($notifdelete == 'success'){
                 echo '<script>Swal.fire({
-                  title: "User berhasil dihapus!",
+                  title: "User deleted successfully!",
                   text: "You clicked the button!",
                   icon: "success"
                 });</script>';
                 
               }elseif($notif == 'failed'){
                 echo '<script>Swal.fire({
-                  title: "User tidak boleh duplikat!",
+                  title: "User must be unique!",
                   text: "You clicked the button!",
                   icon: "error"
                 });</script>'; }
@@ -107,10 +107,11 @@ if($cetaklevel == 'cashier' || $cetaklevel == 'admin' ){
                       $no++;
                     };
                    }else{
-                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Data belum ada!</strong> Silahkan inputkan user terlebih dahulu.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
+                    echo '<script>Swal.fire({
+                    title: "Users is empty!",
+                    text: "You clicked the button!",
+                    icon: "warning"
+                  });</script>';
                    } ?>
                     </tbody>
                   </table>

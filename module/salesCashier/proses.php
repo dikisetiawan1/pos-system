@@ -8,7 +8,11 @@ $id_user = $_SESSION['id_user'];
 
 // cek apakah ada produk yang dikirim dari form
 if (!isset($_POST['produk']) || empty($_POST['produk']['kode'])) {
-  echo "Tidak ada produk yang dikirim.";
+  echo '<script>Swal.fire({
+                  title: "Product added failed!",
+                  text: "You clicked the button!",
+                  icon: "success"
+                });</script>';
   exit;
 }
 

@@ -26,8 +26,9 @@ $printer = new Printer($connector);
 $printer->setJustification(Printer::JUSTIFY_CENTER);
 $printer->text("{$row_toko['nama_toko']}\n");
 $printer->text("{$row_toko['alamat']}\n");
-$printer->text("No. Tlp: {$row_toko['tlp']}\n");
-$printer->text("Email: {$row_toko['email']}\n");
+$printer->text("Tlp: {$row_toko['tlp']}\n");
+// $printer->text("Email: {$row_toko['email']}\n");
+$printer->text("Date: {$transaksi['tgl']}\n");
 $printer->text("------------------------------\n");
 $printer->setJustification(Printer::JUSTIFY_LEFT);
 

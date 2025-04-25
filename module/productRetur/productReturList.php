@@ -13,8 +13,8 @@
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="<?php echo BASE_URL . "module/productRetur/export.php"; ?>" class="btn btn-primary">Export</a>
             <a href="<?php echo BASE_URL . "index.php?&module=productRetur&action=list"; ?>" class="btn btn-success">Retur Product</a>
-            <a href="<?php echo BASE_URL . "module/productRetur/export.php"; ?>" class="btn btn-primary">Export</a>
           
               </div>
               </div>
@@ -28,9 +28,11 @@
                                   <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Product Code</th>
-                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Purchase date</th>
+                                    <th scope="col">Product</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Stock Retur</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Reason</th>
 
                                   </tr>
@@ -42,24 +44,27 @@
                             $result = mysqli_query($koneksi, $query);
                             if($result->num_rows > 0){
                                 $no=1;
-                            while ($row = mysqli_fetch_assoc($result)) {
+                            while ($item = mysqli_fetch_assoc($result)) {
                               echo "
                                   <tr>
                                     <td>$no</td>
-                                    <td>$row[id_produk]</td>
-                                    <td>$row[nama_produk]</td>
-                                    <td>$row[tgl]</td>
-                                    <td>$row[stok_retur]</td>
-                                    <td>$row[ket]</td>
+                                    <td>$item[id_produk]</td>
+                                    <td>$item[tgl_transaksi]</td>
+                                    <td>$item[nama_produk]</td>
+                                    <td>$item[tgl]</td>
+                                    <td>$item[stok_retur]</td>
+                                    <td> ".rupiah($item['harga'])."</td>
+                                    <td>$item[ket]</td>
 
                                    ";
                                   $no++;
                                 };
                               }else{
-                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Data is empty!</strong> Please input product retur before.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                              </div>';
+                                echo '<script>Swal.fire({
+                                title: "Product retur list is empty!",
+                                text: "You clicked the button!",
+                                icon: "warning"
+                              });</script>';
                               } ?>
                                 </tbody>
                               </table>
