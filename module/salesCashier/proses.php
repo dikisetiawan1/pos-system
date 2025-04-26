@@ -68,9 +68,9 @@ logAktivitas($_SESSION['id_user'], 'Transaksi Produk', "Melakukan Transaksi Prod
 }
 
 // Redirect ke halaman cetak
-header("location:" . BASE_URL . "index.php?&module=salesCashier&action=cetak&id=$transaksi_id");
+header("location:" . BASE_URL . "print.php?&id=$transaksi_id");
 exit;
 
 
-
+    
 ?>
