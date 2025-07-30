@@ -9,7 +9,7 @@ use Dompdf\Options;
 $tgl_mulai = $_GET['tgl_mulai'];
 $tgl_sampai = $_GET['tgl_sampai'];
 
-$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE DATE(tgl) BETWEEN '$tgl_mulai' AND '$tgl_sampai'
+$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian,transactions.keuntungan, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE DATE(tgl) BETWEEN '$tgl_mulai' AND '$tgl_sampai'
           ORDER BY tgl ASC";
 
 $result = mysqli_query($koneksi, $query);
@@ -18,6 +18,7 @@ $result = mysqli_query($koneksi, $query);
 $total_all = 0;
 $bayar_all = 0;
 $kembalian_all = 0;
+$keuntungan_all = 0;
 
 $html = "<h3>Report Transaction</h3>";
 $html .= "<p>Periode: " . date('d-m-Y', strtotime($tgl_mulai)) . " s/d " . date('d-m-Y', strtotime($tgl_sampai)) . "</p>";
@@ -29,6 +30,7 @@ $html .= "<table border='1' cellpadding='5' cellspacing='0' width='100%'>
                     <th>Total</th>
                     <th>Payment</th>
                     <th>Change</th>
+                    <th>Profit</th>
                     <th>User</th>
                 </tr>
             </thead>
@@ -41,11 +43,13 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <td>Rp" . number_format($row['total'], 0, ',', '.') . "</td>
                 <td>Rp" . number_format($row['bayar'], 0, ',', '.') . "</td>
                 <td>Rp" . number_format($row['kembalian'], 0, ',', '.') . "</td>
+                <td>Rp" . number_format($row['keuntungan'], 0, ',', '.') . "</td>
                 <td>{$row['nama']}</td>
               </tr>";
 
     // Tambah ke subtotal
     $total_all += $row['total'];
+    $keuntungan_all += $row['keuntungan'];
     
 }
 
@@ -53,6 +57,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 $html .= "<tr style='font-weight: bold; background-color: #eee;'>
             <td colspan='2' align='center'>Subtotal</td>
             <td>Rp" . number_format($total_all, 0, ',', '.') . "</td>
+          </tr>";
+$html .= "<tr style='font-weight: bold; background-color: #eee;'>
+            <td colspan='2' align='center'>Total profit</td>
+            <td>Rp" . number_format($keuntungan_all, 0, ',', '.') . "</td>
           </tr>";
 
 $html .= "</tbody></table>";

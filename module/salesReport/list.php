@@ -5,7 +5,7 @@ if($cetaklevel == 'cashier'  ){
   exit;
 }
 // Query transactions
-$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE 1=1";
+$query = "SELECT transactions.tgl, transactions.id, transactions.total, transactions.bayar, transactions.kembalian,transactions.keuntungan, users.nama FROM transactions INNER JOIN users ON users.id_user = transactions.id_user WHERE 1=1";
 
 // Mengurutkan hasil data transaksi terbaru
 $query .= " ORDER BY tgl DESC";
@@ -67,6 +67,7 @@ $result = mysqli_query($koneksi, $query);
                         <th>Total</th>
                         <th>Payment</th>
                         <th>Change</th>
+                        <th>Profit</th>
                         <th>User</th>
                       </tr>
                     </thead>
@@ -79,6 +80,7 @@ $result = mysqli_query($koneksi, $query);
                             <td>Rp<?= number_format($row['total'], 0, ',', '.') ?></td>
                             <td>Rp<?= number_format($row['bayar'], 0, ',', '.') ?></td>
                             <td>Rp<?= number_format($row['kembalian'], 0, ',', '.') ?></td>
+                            <td>Rp<?= number_format($row['keuntungan'], 0, ',', '.') ?></td>
                             <td><?= $row['nama'] ?></td>
                           </tr>
                         <?php endwhile; ?>

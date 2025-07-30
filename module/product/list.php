@@ -88,6 +88,7 @@ if($cetaklevel == 'cashier' ){
                         <th scope="col">Category</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Unit</th>
+                        <th scope="col">Purchase Price</th>
                         <th scope="col">Price</th>
                         <th scope="col">Prod exp</th>
                         <th scope="col">Action</th>
@@ -95,7 +96,7 @@ if($cetaklevel == 'cashier' ){
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan, products.harga,products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
+                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan,products.harga_beli, products.harga,products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
@@ -108,6 +109,7 @@ if($cetaklevel == 'cashier' ){
                         <td>$item[flag_kategori]</td>
                         <td>$item[stok]</td>
                         <td>$item[satuan]</td>
+                        <td> ".rupiah($item['harga_beli'])."</td>
                         <td> ".rupiah($item['harga'])."</td>
                         <td> $item[product_exp]</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
@@ -183,6 +185,10 @@ if($cetaklevel == 'cashier' ){
                       <option value="RIM">RIM</option>
                       <option value="CARTON">CARTON</option>
                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="harga_beli" class="form-label">Purchase Price <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="harga_beli"  name="harga_beli"  aria-describedby="harga_beli" placeholder="Cth : 10000" value='<?= $harga_beli ?>' oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>

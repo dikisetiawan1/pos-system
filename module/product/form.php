@@ -7,6 +7,7 @@
     $id_kategori="";
     $stok="";
     $satuan="";
+    $harga_beli="";
     $harga="";
     $produk_exp="";
 
@@ -20,6 +21,7 @@
         $id_kategori = $item['id_kategori'];
         $stok = $item['stok'];
         $satuan = $item['satuan'];
+        $harga_beli = $item['harga_beli'];
         $harga = $item['harga'];
         $produk_exp = $item['product_exp'];
     }
@@ -89,6 +91,10 @@
                                   
                         
                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="harga_beli" class="form-label">Purchase Price <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="harga_beli"  name="harga_beli"  aria-describedby="harga_beli" placeholder="Cth : 10000" value='<?= $harga_beli ?>' oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>

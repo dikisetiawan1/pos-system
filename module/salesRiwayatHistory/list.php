@@ -34,8 +34,10 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Product Code</th>
+                        <th scope="col">Transactions id</th>
                         <th scope="col">Product</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Purchase Price</th>
                         <th scope="col">Price</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Subtotal</th>
@@ -43,7 +45,7 @@
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT transactions_detail.kode_produk,transactions_detail.nama_produk,transactions_detail.harga,transactions_detail.jumlah,transactions_detail.subtotal,transactions.tgl as tgl_transaksi  FROM transactions_detail INNER JOIN transactions ON transactions_detail.transaksi_id = transactions.id";
+                $query = "SELECT transactions_detail.kode_produk,transactions_detail.transaksi_id,transactions_detail.nama_produk,transactions_detail.harga_beli,transactions_detail.harga,transactions_detail.jumlah,transactions_detail.subtotal,transactions.tgl as tgl_transaksi  FROM transactions_detail INNER JOIN transactions ON transactions_detail.transaksi_id = transactions.id";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
@@ -52,8 +54,10 @@
                       <tr>
                         <td>$no</td>
                         <td>$item[kode_produk]</td>
+                        <td>$item[transaksi_id]</td>
                         <td>$item[nama_produk]</td>
                         <td>$item[tgl_transaksi]</td>
+                        <td> ".rupiah($item['harga_beli'])."</td>
                         <td> ".rupiah($item['harga'])."</td>
                         <td>$item[jumlah]</td>
                         <td>$item[subtotal]</td>

@@ -103,7 +103,7 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.nama_produk) {
-                                tambahProduk(kode, data.nama_produk, data.harga);
+                                tambahProduk(kode, data.nama_produk, data.harga, data.harga_beli);
                                 input.value = '';
                                 status.innerHTML = '';
                             } else {
@@ -114,7 +114,7 @@
             }
 
             let produkCount = 0; // untuk menghitung nomor urut produk
-            function tambahProduk(kode, nama, harga) {
+            function tambahProduk(kode, nama, harga, harga_beli) {
                 const list = document.getElementById("produkList");
                 const hiddenInputs = document.getElementById("produkHiddenInputs");
 
@@ -141,6 +141,7 @@
                     <input type="hidden" class="form-control" name="produk[kode][]" value="${kode}">
                     <input type="hidden" class="form-control" name="produk[nama][]" value="${nama}">
                     <input type="hidden" class="form-control" name="produk[harga][]" value="${harga}">
+                    <input type="hidden" class="form-control" name="produk[harga_beli][]" value="${harga_beli}">
                 </div>
                 `;
                 list.appendChild(div); // tambahkan ke list
