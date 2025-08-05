@@ -69,7 +69,7 @@
              
 
               <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'superadmin' ) : ?>
-              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired" || $module=="productRetur"){
+              <li class="nav-item <?php if($module=="product" || $module=="productCategory" || $module=="productStock" || $module=="productExpired" || $module=="productRetur" || $module=="productBarcode"){
                 echo "menu-open";
               }
               ?>" >
@@ -114,11 +114,19 @@
                     </a>
                   </li> 
                   <li class="nav-item">
-                  <a <?php if($module=="productRetur" && $action == "list"){
+                  <a <?php if($module=="productRetur" && $action == "productReturList"){
                   echo "class='nav-link active'";
                 }?>  href='<?php echo BASE_URL . "index.php?&module=productRetur&action=productReturList"; ?>' class="nav-link ">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Product Retur</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                  <a <?php if($module=="productBarcode" && $action == "list"){
+                  echo "class='nav-link active'";
+                }?>  href='<?php echo BASE_URL . "index.php?&module=productBarcode&action=list"; ?>' class="nav-link ">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Product Barcode List</p>
                     </a>
                   </li>
                 </ul>
