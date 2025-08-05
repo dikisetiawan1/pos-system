@@ -12,7 +12,6 @@ function generateCode($length = 13) {
     }
     return $code;
 }
-
 // Fungsi untuk generate kode unik
 function generateUniqueCode($koneksi, $length = 13) {
     do {
@@ -24,7 +23,7 @@ function generateUniqueCode($koneksi, $length = 13) {
     return $code;
 }
 
-// Contoh simpan ke database
+//simpan ke database
 $label_product = $_POST['label_product'];
 $id_product_barcode = generateUniqueCode($koneksi);
 

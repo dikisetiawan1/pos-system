@@ -9,10 +9,7 @@ if($cetaklevel == 'cashier' ){
   $notif = isset($_GET['notif']) ? $_GET['notif'] : false;          
   $notifupdate = isset($_GET['notifupdate']) ? $_GET['notifupdate'] : false;     
   $notifdelete = isset($_GET['notifdelete']) ? $_GET['notifdelete'] : false;
-  // ambil id yg dikirim untuk proses hapus item
-  $id_produk = isset($_GET['id_produk']) ? $_GET['id_produk'] : false;
-  mysqli_query($koneksi, "DELETE FROM products WHERE id_produk='$id_produk'");
-  logAktivitas($_SESSION['id_user'], 'Hapus Produk', "Hapus produk ID: $id_produk");
+  
   ?>
 
 
@@ -37,7 +34,7 @@ if($cetaklevel == 'cashier' ){
             <!--end::Row-->
             <div class="row">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="<?php echo BASE_URL . "module/product/export.php"; ?>" class="btn btn-primary">Export</a>
+            <a href="<?php echo BASE_URL . "cetakBarcode.php"; ?>" target="_blank" class="btn btn-primary">Cetak Semua Barcode</a>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <i class="fas fa-plus" style="color: #ffffff;"></i> Product
             </button>
@@ -83,9 +80,9 @@ if($cetaklevel == 'cashier' ){
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Barcode</th>
-                        <th scope="col">Id Product</th>
                         <th scope="col">Product</th>
+                        <th scope="col">Id Product</th>
+                        <th scope="col">Barcode</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -96,6 +93,8 @@ if($cetaklevel == 'cashier' ){
                 <?php foreach ($result as $i => $item): ?>
                       <tr>
                           <td><?= $i+1 ?></td>
+                          <td><?= $item['id_product_barcode'] ?></td>
+                          <td><?= $item['label_product'] ?></td>
                           <td>
                               <svg class="barcode" jsbarcode-format="CODE128"
                                   jsbarcode-value="<?= $item['id_product_barcode'] ?>" 
@@ -104,11 +103,7 @@ if($cetaklevel == 'cashier' ){
                                   jsbarcode-fontSize="14">
                                 </svg>  
                           </td>
-                          <td><?= $item['id_product_barcode'] ?></td>
-                          <td><?= $item['label_product'] ?></td>
-                          <td>
-                              <a href="?hapus=<?= $row['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus produk ini?')">Hapus</a>
-                          </td>
+                          <td><a class="btn btn-primary" href="<?php echo BASE_URL . "cetakBarcodeItem.php?&id=$item[id]"; ?>" target="_blank">🖨️ Cetak Barcode</a></td>
                       </tr>
                       <?php endforeach ?>
                     </tbody>
@@ -126,12 +121,12 @@ if($cetaklevel == 'cashier' ){
       </main>
 
     
-            <!-- Form Modal input barang -->
+            <!-- Form Modal input generate code product -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content"> 
                   <div class="modal-header">
-                    <h5 class="modal-title  fw-bolder" id="staticBackdropLabel">Form Product <br>
+                    <h5 class="modal-title  fw-bolder" id="staticBackdropLabel">Form Generate Code Product <br>
                     <span style="color: red; font-size:12px">*  <span  class="text-capitalize ">kolom input wajib diisi.</span></span>
                   </h5> <br>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -139,7 +134,7 @@ if($cetaklevel == 'cashier' ){
                   <div class="modal-body">
                   <form action="<?php echo BASE_URL . "module/productBarcode/generate.php"; ?>" method="POST" enctype="multipart/form-data">
                     <div class="mb-3" >
-                      <label for="label_product" class="form-label">Product Label<span style="color: red; font-size:20px" >*</span></label>
+                      <label for="label_product" class="form-label">Product<span style="color: red; font-size:20px" >*</span></label>
                       <input type="text" class="form-control" id="label_product" name="label_product" aria-describedby="label_product" oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                    
