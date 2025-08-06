@@ -10,7 +10,10 @@
     $harga_beli="";
     $harga="";
     $produk_exp="";
-
+    $diskon_item="";
+    $dis_rak="";
+    $status_harga="";
+    
 // jika id yg di kirim melalui url parameter sama yg ada di db, maka tampilkan
     if($id_produk){
         $sql = "SELECT * FROM products WHERE id_produk='$id_produk'";
@@ -24,6 +27,9 @@
         $harga_beli = $item['harga_beli'];
         $harga = $item['harga'];
         $produk_exp = $item['product_exp'];
+        $diskon_item = $item['diskon_item'];
+        $dis_rak = $item['dis_rak'];
+        $status_harga = $item['status_harga'];
     }
 
 ?>
@@ -97,15 +103,34 @@
                       <input type="text" class="form-control" id="harga_beli"  name="harga_beli"  aria-describedby="harga_beli" placeholder="Cth : 10000" value='<?= $harga_beli ?>' oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
-                      <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Cth : 10000" value='<?= $harga ?>' oninput="this.value = this.value.toUpperCase()" required>
+                      <label for="harga_reguler" class="form-label">Harga Reguler <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="harga_reguler"  name="harga_reguler"  aria-describedby="harga_reguler" placeholder="Cth : 10000" value='<?= $harga ?>' oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
-                      <label for="product_exp" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
+                      <label for="diskon_item" class="form-label">Diskon<span style="color: red; font-size:20px">*</span></label>
+                      <input type="number" class="form-control" id="diskon_item"  name="diskon_item"  aria-describedby="diskon_item" placeholder="Cth : 10000" value='<?= $diskon_item ?>' required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="satuan" class="form-label">Status Harga <span style="color: red; font-size:20px">*</span></label>
+                     <select name="status_harga" id="status_harga" class="form-control" required>
+
+                          <option value='<?= $status_harga?>' selected><?= $status_harga;?></option>
+                                  <option value='REGULER'>REGULER</option>
+                                  <option value='DISKON'>DISKON/PROMO</option>
+
+                     </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="dis_rak" class="form-label">Posisi Rak <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="dis_rak"  name="dis_rak"  aria-describedby="dis_rak" placeholder="Cth : 10000" value='<?= $dis_rak ?>' required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="product_exp" class="form-label">Prod Exp <span style="color: red; font-size:20px">*</span></label>
                       <input type="date" class="form-control" id="product_exp"  name="product_exp"  aria-describedby="product_exp" placeholder="Cth : 10000" value='<?= $produk_exp ?>' required>
                     </div>
+                    
                     <div class="modal-footer">
-                    <a href="<?= BASE_URL . "index.php?module=product&action=list" ?>" class="btn btn-secondary me-2">Back</a>
+                      <a href="<?= BASE_URL . "index.php?module=product&action=list" ?>" class="btn btn-secondary me-2">Back</a>
                     <button type="submit" name="button" value="update" class="btn btn-success">Update</button>
                   </div>
                   </form>

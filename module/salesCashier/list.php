@@ -103,7 +103,7 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.nama_produk) {
-                                tambahProduk(kode, data.nama_produk, data.harga, data.harga_beli);
+                                tambahProduk(kode, data.nama_produk, data.harga, data.harga_beli, data.diskon_item);
                                 input.value = '';
                                 status.innerHTML = '';
                             } else {
@@ -114,7 +114,7 @@
             }
 
             let produkCount = 0; // untuk menghitung nomor urut produk
-            function tambahProduk(kode, nama, harga, harga_beli) {
+            function tambahProduk(kode, nama, harga, harga_beli, diskon_item) {
                 const list = document.getElementById("produkList");
                 const hiddenInputs = document.getElementById("produkHiddenInputs");
 
@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-6">
                      <strong>${produkCount}.</strong> 
-                    <strong >${kode}</strong> - ${nama} ( Rp ${Number(harga).toLocaleString()} ) 
+                    <strong >${kode}</strong> - ${nama} ( Rp ${Number(harga).toLocaleString()} ) - Diskon: ( Rp ${Number(diskon_item).toLocaleString()} )
                     </div> Qty:
                     <div class="col-2 p-2"> <input type="number" class="form-control" name="produk[jumlah][]" value="1" min="1" oninput="hitungTotal()" ></div>
                     <div class="col-2 p-2"><a type="button" class="btn btn-warning" onclick="hapusProduk('${kode}')"><i class='fas fa-trash-alt'></i></a></div>

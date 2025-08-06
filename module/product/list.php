@@ -90,17 +90,22 @@ if($cetaklevel == 'cashier' ){
                         <th scope="col">Unit</th>
                         <th scope="col">Purchase Price</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Diskon</th>
+                        <th scope="col">Status Harga</th>
+                        <th scope="col">Posisi Rak</th>
                         <th scope="col">Prod exp</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                 <?php
-                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan,products.harga_beli, products.harga,products.product_exp, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
+                $query = "SELECT products.id_produk, products.nama_produk, products.stok, products.satuan,products.harga_beli, products.harga,products.product_exp,products.diskon_item,products.dis_rak,products.status_harga, kategori.flag as flag_kategori FROM products INNER JOIN kategori ON products.id_kategori = kategori.id_kategori";
                 $result = mysqli_query($koneksi, $query);
                 if($result->num_rows > 0){
                     $no=1;
                 while ($item = mysqli_fetch_assoc($result)) {
+                 $isDiskon = stripos($item['status_harga'], 'DISKON') !== false;
+                 $bgColor = $isDiskon ? 'color: orange; font-weight:800;' : 'font-weight:800;';
                   echo "
                       <tr>
                         <td>$no</td>
@@ -111,6 +116,9 @@ if($cetaklevel == 'cashier' ){
                         <td>$item[satuan]</td>
                         <td> ".rupiah($item['harga_beli'])."</td>
                         <td> ".rupiah($item['harga'])."</td>
+                        <td> ".rupiah($item['diskon_item'])."</td>
+                        <td style='$bgColor;'> $item[status_harga]</td>
+                        <td> $item[dis_rak]</td>
                         <td> $item[product_exp]</td>
                         <td> <a href='" . BASE_URL . "index.php?&module=product&action=form&id_produk=$item[id_produk]' type='button' class='btn btn-warning' ><i class='fas fa-edit'></i></a>  
                         <a href='" . BASE_URL . "index.php?&module=product&action=list&id_produk=$item[id_produk]&notifdelete=success' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a></td>
@@ -188,11 +196,27 @@ if($cetaklevel == 'cashier' ){
                     </div>
                     <div class="mb-3">
                       <label for="harga_beli" class="form-label">Purchase Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga_beli"  name="harga_beli"  aria-describedby="harga_beli" placeholder="Cth : 10000" value='<?= $harga_beli ?>' oninput="this.value = this.value.toUpperCase()" required>
+                      <input type="text" class="form-control" id="harga_beli"  name="harga_beli"  aria-describedby="harga_beli" placeholder="Cth : 10000"oninput="this.value = this.value.toUpperCase()" required>
                     </div>
                     <div class="mb-3">
-                      <label for="harga" class="form-label">Price <span style="color: red; font-size:20px">*</span></label>
-                      <input type="text" class="form-control" id="harga"  name="harga"  aria-describedby="harga" placeholder="Cth : 10000" oninput="this.value = this.value.toUpperCase()" required>
+                      <label for="harga_reguler" class="form-label">Harga Reguler <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="harga_reguler"  name="harga_reguler"  aria-describedby="harga_reguler" placeholder="Cth : 10000" oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="diskon_item" class="form-label">Diskon <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="diskon_item"  name="diskon_item"  aria-describedby="diskon_item" placeholder="Cth : 10000" oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="dis_rak" class="form-label">Posisi Rak <span style="color: red; font-size:20px">*</span></label>
+                      <input type="text" class="form-control" id="dis_rak"  name="dis_rak"  aria-describedby="dis_rak" placeholder="Cth : 10000" oninput="this.value = this.value.toUpperCase()" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="satuan" class="form-label">Status Harga <span style="color: red; font-size:20px">*</span></label>
+                     <select name="status_harga" id="status_harga" class="form-control" required>
+                          <option value='<?= $status_harga?>'></option>
+                                  <option value='REGULER'>REGULER</option>
+                                  <option value='DISKON'>DISKON/PROMO</option>
+                     </select>
                     </div>
                     <div class="mb-3">
                       <label for="harga" class="form-label">Tgl Exp <span style="color: red; font-size:20px">*</span></label>
